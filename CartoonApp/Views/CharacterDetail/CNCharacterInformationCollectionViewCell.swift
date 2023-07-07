@@ -14,6 +14,7 @@ class CNCharacterInformationCollectionViewCell: UICollectionViewCell {
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22, weight: .light)
+        label.numberOfLines = 0
         return label
     }()
 

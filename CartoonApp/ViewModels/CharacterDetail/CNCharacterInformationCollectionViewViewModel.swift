@@ -12,6 +12,26 @@ final class CNCharacterInformationCollectionViewViewModel {
     private let type: `Type`
     private let value: String
 
+    static let dateFormatter: DateFormatter = {
+        // Formatter
+        // 2017-11-04T18:50:21.651Z
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSZ"
+        formatter.timeZone = .current
+        return formatter
+    }()
+
+    static let shortDateFormatter: DateFormatter = {
+        // Formatter
+        // 2017-11-04T18:50:21.651Z
+
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
     public var title: String {
         type.displayTitle
     }
@@ -20,6 +40,11 @@ final class CNCharacterInformationCollectionViewViewModel {
         if value.isEmpty {
             return "None"
         }
+        if type == .created, let date = Self.dateFormatter.date(from: value) {
+            // Nov 4, 2017 at 11:50 AM
+            return Self.shortDateFormatter.string(from: date)
+        }
+
         return value
     }
 
