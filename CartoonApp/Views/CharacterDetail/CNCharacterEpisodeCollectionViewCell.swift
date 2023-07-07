@@ -13,7 +13,8 @@ class CNCharacterEpisodeCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        contentView.backgroundColor = .systemCyan
+        contentView.layer.cornerRadius = 8
     }
 
     required init?(coder: NSCoder) {
@@ -32,8 +33,8 @@ class CNCharacterEpisodeCollectionViewCell: UICollectionViewCell {
 
     }
 
-    public func configure(with: CNCharacterEpisodeCollectionViewViewModel) {
-
+    public func configure(with viewModel: CNCharacterEpisodeCollectionViewViewModel) {
+        viewModel.fetchEpisode()
     }
 
 }
