@@ -36,6 +36,7 @@
 		34B0E5332A44045700CBAEB4 /* CNGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B0E5322A44045700CBAEB4 /* CNGetAllCharactersResponse.swift */; };
 		34B0E5352A49187300CBAEB4 /* CNCharacterListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B0E5342A49187300CBAEB4 /* CNCharacterListViewViewModel.swift */; };
 		34B0E5372A49190B00CBAEB4 /* CNCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B0E5362A49190B00CBAEB4 /* CNCharacterListView.swift */; };
+		34DD81CF2A57D6C900985887 /* CNEpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DD81CE2A57D6C900985887 /* CNEpisodeDetailViewController.swift */; };
 		34F76B552A5395FD00E83E17 /* CNImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F76B542A5395FD00E83E17 /* CNImageLoader.swift */; };
 		34F76B592A55342400E83E17 /* CNCharacterPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F76B582A55342400E83E17 /* CNCharacterPhotoCollectionViewCell.swift */; };
 		34F76B5B2A55344900E83E17 /* CNCharacterInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F76B5A2A55344900E83E17 /* CNCharacterInformationCollectionViewCell.swift */; };
@@ -77,6 +78,7 @@
 		34B0E5322A44045700CBAEB4 /* CNGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNGetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		34B0E5342A49187300CBAEB4 /* CNCharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCharacterListViewViewModel.swift; sourceTree = "<group>"; };
 		34B0E5362A49190B00CBAEB4 /* CNCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCharacterListView.swift; sourceTree = "<group>"; };
+		34DD81CE2A57D6C900985887 /* CNEpisodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeDetailViewController.swift; sourceTree = "<group>"; };
 		34F76B542A5395FD00E83E17 /* CNImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNImageLoader.swift; sourceTree = "<group>"; };
 		34F76B582A55342400E83E17 /* CNCharacterPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCharacterPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		34F76B5A2A55344900E83E17 /* CNCharacterInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCharacterInformationCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				348ADAD82A512D28008D65CD /* CNCharacterDetailViewController.swift */,
+				34DD81CE2A57D6C900985887 /* CNEpisodeDetailViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				34F76B5D2A55345A00E83E17 /* CNCharacterEpisodeCollectionViewCell.swift in Sources */,
 				34A99DEE2A494EAD002B4916 /* Extensions.swift in Sources */,
 				34F76B552A5395FD00E83E17 /* CNImageLoader.swift in Sources */,
+				34DD81CF2A57D6C900985887 /* CNEpisodeDetailViewController.swift in Sources */,
 				3457D6F82A36BEAC0067D9CC /* CNEpisode.swift in Sources */,
 				348ADAD92A512D28008D65CD /* CNCharacterDetailViewController.swift in Sources */,
 				346256292A3FFB6000EE09CB /* CNSingleLocation.swift in Sources */,

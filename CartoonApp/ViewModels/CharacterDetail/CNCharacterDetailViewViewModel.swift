@@ -11,6 +11,10 @@ final class CNCharacterDetailViewViewModel {
     
     private let character: CNCharacter
 
+    public var episodes: [String] {
+        character.episode
+    }
+
     // enum and associated values
     enum SectionType {
         case photo(viewModel: CNCharacterPhotoCollectionViewViewModel)

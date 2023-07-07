@@ -61,6 +61,7 @@ final class CNCharacterEpisodeCollectionViewViewModel {
             case .failure(let failure):
                 print(failure)
             }
+            self?.isFetchingEpisode = false
         }
     }
 }
