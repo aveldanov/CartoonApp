@@ -34,6 +34,9 @@ class CNCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     }
 
     public func configure(with viewModel: CNCharacterEpisodeCollectionViewViewModel) {
+        viewModel.registerForData { data in
+            print("DATA0000000",data.name, data.air_date, data.episode)
+        }
         viewModel.fetchEpisode()
     }
 

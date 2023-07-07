@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct CNEpisode: Codable {
+struct CNEpisode: Codable, CNEpisodeDataRenderProtocol {
     let id: Int
     let name: String
     let air_date: String
