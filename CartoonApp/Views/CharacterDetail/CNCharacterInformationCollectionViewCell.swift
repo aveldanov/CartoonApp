@@ -88,8 +88,8 @@ class CNCharacterInformationCollectionViewCell: UICollectionViewCell {
 
             valueLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
             valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 36),
-            valueLabel.heightAnchor.constraint(equalToConstant: 30)
+            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            valueLabel.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor)
         ])
     }
 
