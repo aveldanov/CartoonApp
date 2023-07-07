@@ -84,7 +84,7 @@ final class CNCharacterInformationCollectionViewViewModel {
             case .created:
                 return .systemOrange
             case .episodeCount:
-                return .systemBrown
+                return .systemIndigo
             }
         }
 
