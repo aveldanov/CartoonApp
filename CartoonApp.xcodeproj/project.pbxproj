@@ -19,6 +19,9 @@
 		3457D6FD2A36C27B0067D9CC /* CNLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6FC2A36C27B0067D9CC /* CNLocationsViewController.swift */; };
 		3457D6FF2A36C2850067D9CC /* CNEpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6FE2A36C2850067D9CC /* CNEpisodesViewController.swift */; };
 		3457D7012A36C28F0067D9CC /* CNSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D7002A36C28F0067D9CC /* CNSettingsViewController.swift */; };
+		345B64882A58F71400E14535 /* CNAPICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64872A58F71400E14535 /* CNAPICacheManager.swift */; };
+		345B648A2A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64892A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift */; };
+		345B648C2A59078500E14535 /* CNEpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B648B2A59078500E14535 /* CNEpisodeDetailView.swift */; };
 		346256212A3FF39000EE09CB /* CNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256202A3FF39000EE09CB /* CNService.swift */; };
 		346256232A3FF3A300EE09CB /* CNRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256222A3FF3A300EE09CB /* CNRequest.swift */; };
 		346256252A3FF43700EE09CB /* CNEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256242A3FF43600EE09CB /* CNEndpoint.swift */; };
@@ -61,6 +64,9 @@
 		3457D6FC2A36C27B0067D9CC /* CNLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationsViewController.swift; sourceTree = "<group>"; };
 		3457D6FE2A36C2850067D9CC /* CNEpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodesViewController.swift; sourceTree = "<group>"; };
 		3457D7002A36C28F0067D9CC /* CNSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsViewController.swift; sourceTree = "<group>"; };
+		345B64872A58F71400E14535 /* CNAPICacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNAPICacheManager.swift; sourceTree = "<group>"; };
+		345B64892A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeDetailViewViewModel.swift; sourceTree = "<group>"; };
+		345B648B2A59078500E14535 /* CNEpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeDetailView.swift; sourceTree = "<group>"; };
 		346256202A3FF39000EE09CB /* CNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNService.swift; sourceTree = "<group>"; };
 		346256222A3FF3A300EE09CB /* CNRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNRequest.swift; sourceTree = "<group>"; };
 		346256242A3FF43600EE09CB /* CNEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEndpoint.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 				34F76B562A5533C100E83E17 /* CharacterDetail */,
 				348ADADE2A5233A8008D65CD /* CNFooterLoadingCollectionReusableView.swift */,
 				34F76B572A5533EA00E83E17 /* Character */,
+				345B648B2A59078500E14535 /* CNEpisodeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +171,7 @@
 				34F76B5E2A55347C00E83E17 /* CharacterDetail */,
 				34B0E5342A49187300CBAEB4 /* CNCharacterListViewViewModel.swift */,
 				34A99DF12A4BE593002B4916 /* CNCharacterCollectionViewCellViewModel.swift */,
+				345B64892A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				34F76B542A5395FD00E83E17 /* CNImageLoader.swift */,
+				345B64872A58F71400E14535 /* CNAPICacheManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -346,6 +355,7 @@
 				34A99DF02A4AA35F002B4916 /* CNCharacterCollectionViewCell.swift in Sources */,
 				348ADADB2A512EA8008D65CD /* CNCharacterDetailView.swift in Sources */,
 				34F76B602A5534B900E83E17 /* CNCharacterPhotoCollectionViewViewModel.swift in Sources */,
+				345B64882A58F71400E14535 /* CNAPICacheManager.swift in Sources */,
 				34B0E5352A49187300CBAEB4 /* CNCharacterListViewViewModel.swift in Sources */,
 				346256232A3FF3A300EE09CB /* CNRequest.swift in Sources */,
 				348ADADD2A512EC3008D65CD /* CNCharacterDetailViewViewModel.swift in Sources */,
@@ -363,6 +373,7 @@
 				3457D6FB2A36C2680067D9CC /* CNCharactersViewController.swift in Sources */,
 				34F76B5D2A55345A00E83E17 /* CNCharacterEpisodeCollectionViewCell.swift in Sources */,
 				34A99DEE2A494EAD002B4916 /* Extensions.swift in Sources */,
+				345B648A2A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift in Sources */,
 				34F76B552A5395FD00E83E17 /* CNImageLoader.swift in Sources */,
 				34DD81CF2A57D6C900985887 /* CNEpisodeDetailViewController.swift in Sources */,
 				3457D6F82A36BEAC0067D9CC /* CNEpisode.swift in Sources */,
@@ -370,6 +381,7 @@
 				346256292A3FFB6000EE09CB /* CNSingleLocation.swift in Sources */,
 				346256212A3FF39000EE09CB /* CNService.swift in Sources */,
 				34F76B642A5534DB00E83E17 /* CNCharacterEpisodeCollectionViewViewModel.swift in Sources */,
+				345B648C2A59078500E14535 /* CNEpisodeDetailView.swift in Sources */,
 				3457D6D72A36A3A80067D9CC /* AppDelegate.swift in Sources */,
 				3457D6F62A36BEA10067D9CC /* CNCharacter.swift in Sources */,
 				34F76B622A5534CD00E83E17 /* CNCharacterInformationCollectionViewViewModel.swift in Sources */,

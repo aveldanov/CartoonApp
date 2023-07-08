@@ -21,7 +21,7 @@ final class CNRequest {
     }
 
     /// Desired endpoint
-    private let endpoint: CNEndpoint
+    public let endpoint: CNEndpoint
 
     /// Path components for API if any
     private let pathComponents: [String]

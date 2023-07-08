@@ -82,7 +82,6 @@ class CNCharacterEpisodeCollectionViewCell: UICollectionViewCell {
 
     public func configure(with viewModel: CNCharacterEpisodeCollectionViewViewModel) {
         viewModel.registerForData { [weak self] data in
-            print("DATA0000000",data.name, data.air_date, data.episode)
             self?.nameLabel.text = data.name
             self?.episodeLabel.text = "Episode \(data.episode)"
             self?.airDateLabel.text = "Aired on \(data.air_date)"

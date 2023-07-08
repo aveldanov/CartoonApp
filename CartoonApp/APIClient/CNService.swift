@@ -12,6 +12,8 @@ final class CNService {
     /// Shared singleton instance
     static let shared = CNService()
 
+    private let cacheManager = CNAPICacheManager()
+
     /// Privitized Contructor
     private init() {}
 
@@ -28,12 +30,24 @@ final class CNService {
     public func execute<T: Codable>(_ request: CNRequest,
                                     expecting type: T.Type,
                                     completion: @escaping (Result<T, Error>) -> Void) {
+
+        if let cachedData = cacheManager.getCache(for: request.endpoint, url: request.url) {
+            print("[CNService] Using cached API response for \(request.endpoint)")
+            do {
+                let result = try JSONDecoder().decode(type.self, from: cachedData)
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+            return
+        }
+
         guard let urlRequest = self.request(from: request) else {
             completion(.failure(CNServiceError.failedToCreateRequest))
             return
         }
 
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+        let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, _, error in
             guard let data, error == nil else {
                 completion(.failure(error ?? CNServiceError.failedToGetData))
                 return
@@ -42,6 +56,7 @@ final class CNService {
 
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
+                self?.cacheManager.setCache(for: request.endpoint, url: request.url, data: data)
                 completion(.success(result))
             } catch {
                 completion(.failure(error))
