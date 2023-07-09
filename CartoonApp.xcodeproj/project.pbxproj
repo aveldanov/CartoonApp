@@ -25,6 +25,7 @@
 		345B64902A590DCE00E14535 /* CNEpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B648F2A590DCE00E14535 /* CNEpisodeListView.swift */; };
 		345B64922A59112600E14535 /* CNEpisodeListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64912A59112600E14535 /* CNEpisodeListViewViewModel.swift */; };
 		345B64942A59146100E14535 /* CNGetAllEpisodesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64932A59146100E14535 /* CNGetAllEpisodesResponse.swift */; };
+		345B64982A5A684900E14535 /* CNSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64972A5A684900E14535 /* CNSearchViewController.swift */; };
 		346256212A3FF39000EE09CB /* CNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256202A3FF39000EE09CB /* CNService.swift */; };
 		346256232A3FF3A300EE09CB /* CNRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256222A3FF3A300EE09CB /* CNRequest.swift */; };
 		346256252A3FF43700EE09CB /* CNEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256242A3FF43600EE09CB /* CNEndpoint.swift */; };
@@ -73,6 +74,7 @@
 		345B648F2A590DCE00E14535 /* CNEpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeListView.swift; sourceTree = "<group>"; };
 		345B64912A59112600E14535 /* CNEpisodeListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeListViewViewModel.swift; sourceTree = "<group>"; };
 		345B64932A59146100E14535 /* CNGetAllEpisodesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNGetAllEpisodesResponse.swift; sourceTree = "<group>"; };
+		345B64972A5A684900E14535 /* CNSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSearchViewController.swift; sourceTree = "<group>"; };
 		346256202A3FF39000EE09CB /* CNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNService.swift; sourceTree = "<group>"; };
 		346256222A3FF3A300EE09CB /* CNRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNRequest.swift; sourceTree = "<group>"; };
 		346256242A3FF43600EE09CB /* CNEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEndpoint.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		3457D6EA2A36B6910067D9CC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				345B64962A5A682E00E14535 /* Other */,
 				3457D6F92A36C2210067D9CC /* Core */,
 				348ADAD52A512C91008D65CD /* DetailControllers */,
 			);
@@ -249,6 +252,14 @@
 				345B648B2A59078500E14535 /* CNEpisodeDetailView.swift */,
 			);
 			path = EpisodeDetail;
+			sourceTree = "<group>";
+		};
+		345B64962A5A682E00E14535 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				345B64972A5A684900E14535 /* CNSearchViewController.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		348ADAD52A512C91008D65CD /* DetailControllers */ = {
@@ -395,6 +406,7 @@
 				348ADADD2A512EC3008D65CD /* CNCharacterDetailViewViewModel.swift in Sources */,
 				34F76B5B2A55344900E83E17 /* CNCharacterInformationCollectionViewCell.swift in Sources */,
 				34F76B592A55342400E83E17 /* CNCharacterPhotoCollectionViewCell.swift in Sources */,
+				345B64982A5A684900E14535 /* CNSearchViewController.swift in Sources */,
 				3457D6DB2A36A3A80067D9CC /* CNTabBarViewController.swift in Sources */,
 				3457D6F42A36BE8A0067D9CC /* CNLocation.swift in Sources */,
 				346256252A3FF43700EE09CB /* CNEndpoint.swift in Sources */,

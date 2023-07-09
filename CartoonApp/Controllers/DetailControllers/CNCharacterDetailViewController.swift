@@ -30,7 +30,7 @@ final class CNCharacterDetailViewController: UIViewController {
     }
 
     @objc
-    func didTapShare() {
+    private func didTapShare() {
         // Share character info
     }
 

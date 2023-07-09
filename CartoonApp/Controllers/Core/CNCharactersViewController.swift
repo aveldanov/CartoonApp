@@ -16,8 +16,20 @@ final class CNCharactersViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Characters"
         characterListView.delegate = self
+        addSearchButton()
         setupViewHierarchy()
         setupViewLayout()
+    }
+
+    private func addSearchButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearch))
+    }
+
+    @objc
+    private func didTapSearch() {
+        let searchViewController = CNSearchViewController(config: CNSearchViewController.Config(type: .character))
+        searchViewController.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(searchViewController, animated: true)
     }
 
     private func setupViewHierarchy() {

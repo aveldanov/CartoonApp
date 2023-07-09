@@ -16,8 +16,18 @@ final class CNEpisodesViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Episodes"
         episodeListView.delegate = self
+        addSearchButton()
         setupViewHierarchy()
         setupViewLayout()
+    }
+
+    private func addSearchButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearch))
+    }
+
+    @objc
+    private func didTapSearch() {
+
     }
 
     private func setupViewHierarchy() {
