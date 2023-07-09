@@ -15,7 +15,7 @@ final class CNEpisodeDetailViewController: UIViewController {
     private let episodeDetailView = CNEpisodeDetailView()
 
     init(url: URL?) {
-        self.viewModel = .init(endpointUrl: url)
+        self.viewModel = CNEpisodeDetailViewViewModel(endpointUrl: url)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -30,6 +30,8 @@ final class CNEpisodeDetailViewController: UIViewController {
 
         setupViewHierarchy()
         setupViewLayout()
+        viewModel.delegate = self
+        viewModel.fetchEpisodeData()
     }
 
     @objc
@@ -51,5 +53,13 @@ final class CNEpisodeDetailViewController: UIViewController {
             episodeDetailView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             episodeDetailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+}
+
+// MARK: - CNEpisodeDetailViewViewModelDelegate
+
+extension CNEpisodeDetailViewController: CNEpisodeDetailViewViewModelDelegate {
+    func didFetchEpisodeDetail() {
+        episodeDetailView.configure(with: viewModel )
     }
 }
