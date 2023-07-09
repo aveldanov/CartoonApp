@@ -10,11 +10,12 @@ import UIKit
 /// View Controller to show detail about a single episode
 final class CNEpisodeDetailViewController: UIViewController {
 
-    private let url: URL?
+    private let viewModel: CNEpisodeDetailViewViewModel
 
+    private let episodeDetailView = CNEpisodeDetailView()
 
     init(url: URL?) {
-        self.url = url
+        self.viewModel = .init(endpointUrl: url)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -25,6 +26,17 @@ final class CNEpisodeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Episode"
-        view.backgroundColor = .red
+    }
+
+    private func setupViewHierarchy() {
+        view.addSubview(episodeDetailView)
+    }
+
+    private func setupViewLayout() {
+        NSLayoutConstraint.activate([
+
+
+        ])
+
     }
 }

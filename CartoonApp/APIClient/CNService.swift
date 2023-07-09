@@ -53,6 +53,7 @@ final class CNService {
                 return
             }
             // Decode response
+            print("[CNService] Using API call \(request.endpoint)")
 
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)

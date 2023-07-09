@@ -34,10 +34,7 @@ class CNCharacterEpisodeCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .tertiarySystemBackground
-        contentView.layer.cornerRadius = 8
-        contentView.layer.borderWidth = 2
-        contentView.layer.borderColor = UIColor.systemBlue.cgColor
-
+        setupLayer()
         setupViewHierarchy()
         setupViewLayout()
     }
@@ -51,6 +48,11 @@ class CNCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         episodeLabel.text = nil
         nameLabel.text = nil
         airDateLabel.text = nil
+    }
+
+    private func setupLayer() {
+        contentView.layer.cornerRadius = 8
+        contentView.layer.borderWidth = 2
     }
 
     private func setupViewHierarchy() {
@@ -88,6 +90,9 @@ class CNCharacterEpisodeCollectionViewCell: UICollectionViewCell {
 
         }
         viewModel.fetchEpisode()
+
+        contentView.layer.borderColor = viewModel.borderColor.cgColor
+
     }
 
 }

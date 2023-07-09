@@ -12,13 +12,13 @@ final class CNCharacterDetailViewController: UIViewController {
 
     private let viewModel: CNCharacterDetailViewViewModel
     
-    private let detailView: CNCharacterDetailView
+    private let characterDetailView: CNCharacterDetailView
 
     // MARK: - Initilizer
 
     init(viewModel: CNCharacterDetailViewViewModel) {
         self.viewModel = viewModel
-        self.detailView = CNCharacterDetailView(frame: .zero, viewModel: viewModel)
+        self.characterDetailView = CNCharacterDetailView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
         setupViewHierarchy()
@@ -40,23 +40,23 @@ final class CNCharacterDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = viewModel.title
-        detailView.collectionView?.delegate = self
-        detailView.collectionView?.dataSource = self
+        characterDetailView.collectionView?.delegate = self
+        characterDetailView.collectionView?.dataSource = self
     }
 
     // MARK: - Setup methods
 
     private func setupViewHierarchy() {
-        view.addSubview(detailView)
+        view.addSubview(characterDetailView)
     }
 
     private func setupViewLayout() {
-        detailView.translatesAutoresizingMaskIntoConstraints = false
+        characterDetailView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            detailView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            detailView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            characterDetailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            characterDetailView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            characterDetailView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            characterDetailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

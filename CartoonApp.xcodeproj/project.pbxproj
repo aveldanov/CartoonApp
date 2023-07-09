@@ -22,6 +22,9 @@
 		345B64882A58F71400E14535 /* CNAPICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64872A58F71400E14535 /* CNAPICacheManager.swift */; };
 		345B648A2A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64892A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift */; };
 		345B648C2A59078500E14535 /* CNEpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B648B2A59078500E14535 /* CNEpisodeDetailView.swift */; };
+		345B64902A590DCE00E14535 /* CNEpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B648F2A590DCE00E14535 /* CNEpisodeListView.swift */; };
+		345B64922A59112600E14535 /* CNEpisodeListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64912A59112600E14535 /* CNEpisodeListViewViewModel.swift */; };
+		345B64942A59146100E14535 /* CNGetAllEpisodesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B64932A59146100E14535 /* CNGetAllEpisodesResponse.swift */; };
 		346256212A3FF39000EE09CB /* CNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256202A3FF39000EE09CB /* CNService.swift */; };
 		346256232A3FF3A300EE09CB /* CNRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256222A3FF3A300EE09CB /* CNRequest.swift */; };
 		346256252A3FF43700EE09CB /* CNEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346256242A3FF43600EE09CB /* CNEndpoint.swift */; };
@@ -67,6 +70,9 @@
 		345B64872A58F71400E14535 /* CNAPICacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNAPICacheManager.swift; sourceTree = "<group>"; };
 		345B64892A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeDetailViewViewModel.swift; sourceTree = "<group>"; };
 		345B648B2A59078500E14535 /* CNEpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeDetailView.swift; sourceTree = "<group>"; };
+		345B648F2A590DCE00E14535 /* CNEpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeListView.swift; sourceTree = "<group>"; };
+		345B64912A59112600E14535 /* CNEpisodeListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeListViewViewModel.swift; sourceTree = "<group>"; };
+		345B64932A59146100E14535 /* CNGetAllEpisodesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNGetAllEpisodesResponse.swift; sourceTree = "<group>"; };
 		346256202A3FF39000EE09CB /* CNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNService.swift; sourceTree = "<group>"; };
 		346256222A3FF3A300EE09CB /* CNRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNRequest.swift; sourceTree = "<group>"; };
 		346256242A3FF43600EE09CB /* CNEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEndpoint.swift; sourceTree = "<group>"; };
@@ -140,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				3457D6F92A36C2210067D9CC /* Core */,
-				348ADAD52A512C91008D65CD /* Other */,
+				348ADAD52A512C91008D65CD /* DetailControllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -157,10 +163,11 @@
 		3457D6EC2A36B7310067D9CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				34F76B562A5533C100E83E17 /* CharacterDetail */,
-				348ADADE2A5233A8008D65CD /* CNFooterLoadingCollectionReusableView.swift */,
 				34F76B572A5533EA00E83E17 /* Character */,
-				345B648B2A59078500E14535 /* CNEpisodeDetailView.swift */,
+				34F76B562A5533C100E83E17 /* CharacterDetail */,
+				345B64952A5A604100E14535 /* EpisodeDetail */,
+				345B648E2A590DB200E14535 /* Episode */,
+				348ADADE2A5233A8008D65CD /* CNFooterLoadingCollectionReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,10 +175,11 @@
 		3457D6ED2A36B73A0067D9CC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				345B648D2A59080000E14535 /* EpisodeDetail */,
 				34F76B5E2A55347C00E83E17 /* CharacterDetail */,
-				34B0E5342A49187300CBAEB4 /* CNCharacterListViewViewModel.swift */,
 				34A99DF12A4BE593002B4916 /* CNCharacterCollectionViewCellViewModel.swift */,
-				345B64892A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift */,
+				34B0E5342A49187300CBAEB4 /* CNCharacterListViewViewModel.swift */,
+				345B64912A59112600E14535 /* CNEpisodeListViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -219,13 +227,37 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		348ADAD52A512C91008D65CD /* Other */ = {
+		345B648D2A59080000E14535 /* EpisodeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				345B64892A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift */,
+			);
+			path = EpisodeDetail;
+			sourceTree = "<group>";
+		};
+		345B648E2A590DB200E14535 /* Episode */ = {
+			isa = PBXGroup;
+			children = (
+				345B648F2A590DCE00E14535 /* CNEpisodeListView.swift */,
+			);
+			path = Episode;
+			sourceTree = "<group>";
+		};
+		345B64952A5A604100E14535 /* EpisodeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				345B648B2A59078500E14535 /* CNEpisodeDetailView.swift */,
+			);
+			path = EpisodeDetail;
+			sourceTree = "<group>";
+		};
+		348ADAD52A512C91008D65CD /* DetailControllers */ = {
 			isa = PBXGroup;
 			children = (
 				348ADAD82A512D28008D65CD /* CNCharacterDetailViewController.swift */,
 				34DD81CE2A57D6C900985887 /* CNEpisodeDetailViewController.swift */,
 			);
-			path = Other;
+			path = DetailControllers;
 			sourceTree = "<group>";
 		};
 		34B0E5302A44041000CBAEB4 /* DataTypes */ = {
@@ -246,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				34B0E5322A44045700CBAEB4 /* CNGetAllCharactersResponse.swift */,
+				345B64932A59146100E14535 /* CNGetAllEpisodesResponse.swift */,
 			);
 			path = ResponseTypes;
 			sourceTree = "<group>";
@@ -351,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				345B64902A590DCE00E14535 /* CNEpisodeListView.swift in Sources */,
 				34B0E5332A44045700CBAEB4 /* CNGetAllCharactersResponse.swift in Sources */,
 				34A99DF02A4AA35F002B4916 /* CNCharacterCollectionViewCell.swift in Sources */,
 				348ADADB2A512EA8008D65CD /* CNCharacterDetailView.swift in Sources */,
@@ -364,8 +398,10 @@
 				3457D6DB2A36A3A80067D9CC /* CNTabBarViewController.swift in Sources */,
 				3457D6F42A36BE8A0067D9CC /* CNLocation.swift in Sources */,
 				346256252A3FF43700EE09CB /* CNEndpoint.swift in Sources */,
+				345B64942A59146100E14535 /* CNGetAllEpisodesResponse.swift in Sources */,
 				3462562B2A3FFCBB00EE09CB /* CNCharacterStatus.swift in Sources */,
 				3457D7012A36C28F0067D9CC /* CNSettingsViewController.swift in Sources */,
+				345B64922A59112600E14535 /* CNEpisodeListViewViewModel.swift in Sources */,
 				3457D6FD2A36C27B0067D9CC /* CNLocationsViewController.swift in Sources */,
 				34B0E5372A49190B00CBAEB4 /* CNCharacterListView.swift in Sources */,
 				3457D6FF2A36C2850067D9CC /* CNEpisodesViewController.swift in Sources */,

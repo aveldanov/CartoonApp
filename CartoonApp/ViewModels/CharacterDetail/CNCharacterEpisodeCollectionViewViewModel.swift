@@ -5,7 +5,7 @@
 //  Created by Anton Veldanov on 7/4/23.
 //
 
-import Foundation
+import UIKit
 
 // Using protocol hiding all unnecessary params from the model
 protocol CNEpisodeDataRenderProtocol {
@@ -14,11 +14,13 @@ protocol CNEpisodeDataRenderProtocol {
     var episode: String { get }
 }
 
-final class CNCharacterEpisodeCollectionViewViewModel {
+final class CNCharacterEpisodeCollectionViewViewModel: Hashable, Equatable {
 
     private let episodeDataUrl: URL?
     private var isFetchingEpisode = false
     private var dataCompletion: ((CNEpisodeDataRenderProtocol) -> Void)?
+
+    public let borderColor: UIColor
 
     private var episode: CNEpisode? {
         didSet {
@@ -31,8 +33,9 @@ final class CNCharacterEpisodeCollectionViewViewModel {
 
     // MARK: - Init
 
-    init(episodeDataUrl: URL?) {
+    init(episodeDataUrl: URL?, borderColor: UIColor = .systemBlue) {
         self.episodeDataUrl = episodeDataUrl
+        self.borderColor = borderColor
     }
 
     // MARK: - Public methods
@@ -64,4 +67,13 @@ final class CNCharacterEpisodeCollectionViewViewModel {
             self?.isFetchingEpisode = false
         }
     }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.episodeDataUrl?.absoluteString ?? "")
+    }
+
+    static func == (lhs: CNCharacterEpisodeCollectionViewViewModel, rhs: CNCharacterEpisodeCollectionViewViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+
 }
