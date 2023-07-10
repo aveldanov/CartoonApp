@@ -104,7 +104,7 @@ final class CNEpisodeDetailViewViewModel {
                 .init(title: "Created On: ", value: episode.created),
             ]),
             .characters(viewModels: characters.compactMap({ character in
-                return CNCharacterCollectionViewCellViewModel(characterName: character.name, characterStatus: character.status, characterImageURL: URL(string: character.url))
+                return CNCharacterCollectionViewCellViewModel(characterName: character.name, characterStatus: character.status, characterImageURL: URL(string: character.image))
             }))
         ]
     }

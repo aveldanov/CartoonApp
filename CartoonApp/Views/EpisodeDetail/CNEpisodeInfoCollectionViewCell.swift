@@ -12,7 +12,8 @@ final class CNEpisodeInfoCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .red
+        contentView.backgroundColor = .secondarySystemBackground
+        setupLayer()
     }
 
     required init?(coder: NSCoder) {
@@ -27,4 +28,10 @@ final class CNEpisodeInfoCollectionViewCell: UICollectionViewCell {
 
     }
 
+    private func setupLayer() {
+        layer.cornerRadius = 8
+        layer.masksToBounds = true
+        layer.borderColor = UIColor.secondaryLabel.cgColor
+        layer.borderWidth = 1
+    }
 }

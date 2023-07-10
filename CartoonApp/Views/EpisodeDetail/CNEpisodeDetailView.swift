@@ -104,11 +104,34 @@ final class CNEpisodeDetailView: UIView {
 extension CNEpisodeDetailView {
 
     private func layout(for section: Int) -> NSCollectionLayoutSection {
+        guard let sections = viewModel?.cellViewModels else {
+            return createInfoLayout()
+        }
+
+        switch sections[section] {
+        case .information:
+            return createInfoLayout()
+        case .characters:
+            return createCharacterLayout()
+        }
+    }
+
+    private func createInfoLayout()  -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: layoutSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
+
+    private func createCharacterLayout()  -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(260))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: layoutSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
@@ -148,15 +171,16 @@ extension CNEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSou
                 fatalError("[CNEpisodeDetailView] no cell")
             }
             
-            cell.backgroundColor = .systemYellow
+            cell.configure(with: cellViewModel)
             return cell
+
         case .characters(let viewModels):
             let cellViewModel = viewModels[indexPath.row]
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CNCharacterCollectionViewCell.identifier, for: indexPath) as? CNCharacterCollectionViewCell else {
                 fatalError("[CNEpisodeDetailView] no cell")
             }
 
-            cell.backgroundColor = .systemCyan
+            cell.configure(with: cellViewModel)
             return cell
         }
     }
