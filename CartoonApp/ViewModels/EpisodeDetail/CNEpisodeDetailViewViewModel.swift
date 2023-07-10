@@ -20,9 +20,13 @@ final class CNEpisodeDetailViewViewModel {
         }
     }
 
-   public weak var delegate: CNEpisodeDetailViewViewModelDelegate?
+    public weak var delegate: CNEpisodeDetailViewViewModelDelegate?
+    public private(set) var sections: [SectionType] = []
 
-
+    enum SectionType {
+        case information(viewModels: [CNEpisodeInfoCollectionViewCellViewModel])
+        case characters(viewModels: [CNCharacterCollectionViewCellViewModel])
+    }
 
     // MARK: - Init
 

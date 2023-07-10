@@ -9,7 +9,16 @@ import UIKit
 
 final class CNEpisodeDetailView: UIView {
 
-    private var viewModel: CNEpisodeDetailViewViewModel?
+    private var viewModel: CNEpisodeDetailViewViewModel? {
+        didSet {
+            spinner.stopAnimating()
+            self.collectionView?.isHidden = false
+            UIView.animate(withDuration: 0.3) {
+                self.collectionView?.alpha = 1
+            }
+        }
+    }
+
     private var collectionView: UICollectionView?
     
     private let spinner: UIActivityIndicatorView = {
@@ -46,7 +55,6 @@ final class CNEpisodeDetailView: UIView {
     }
 
     private func setupViewLayout() {
-
         guard let collectionView = self.collectionView else {
             return
         }
@@ -91,9 +99,11 @@ final class CNEpisodeDetailView: UIView {
 }
 
 extension CNEpisodeDetailView {
+
     private func layout(for section: Int) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: layoutSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
@@ -101,14 +111,16 @@ extension CNEpisodeDetailView {
     }
 }
 
+// MARK: - UICollectionViewDelegate and UICollectionViewDataSource
+
 extension CNEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 3
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -120,7 +132,4 @@ extension CNEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
-
-
-
 }
