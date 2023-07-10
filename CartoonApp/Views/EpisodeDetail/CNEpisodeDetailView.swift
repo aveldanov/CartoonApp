@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CNEpisodeDetailViewDelegate: AnyObject {
+    func cnEpisodeDetailView(_ episodeDetailView: CNEpisodeDetailView, didSelect character: CNCharacter)
+}
+
 final class CNEpisodeDetailView: UIView {
+
+    weak var delegate: CNEpisodeDetailViewDelegate?
 
     private var viewModel: CNEpisodeDetailViewViewModel? {
         didSet {
@@ -120,7 +126,7 @@ extension CNEpisodeDetailView {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100))
+        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(80))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: layoutSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
@@ -187,5 +193,21 @@ extension CNEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSou
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+
+        guard let viewModel = viewModel else {
+            return
+        }
+        let sections = viewModel.cellViewModels
+
+        let sectionType = sections[indexPath.section]
+        switch sectionType {
+        case .information:
+            break
+        case .characters:
+            guard let character = viewModel.character(at: indexPath.row) else {
+                return
+            }
+            delegate?.cnEpisodeDetailView(self, didSelect: character)
+        }
     }
 }

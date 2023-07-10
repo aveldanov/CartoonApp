@@ -53,6 +53,14 @@ final class CNEpisodeDetailViewViewModel {
             }
         }
     }
+
+    public func character(at index: Int) -> CNCharacter? {
+        guard let dataTuple = dataTuple else {
+            return nil
+        }
+
+        return dataTuple.characters[index]
+    }
     
     // MARK: - Private Methods
 
@@ -96,12 +104,17 @@ final class CNEpisodeDetailViewViewModel {
         let episode = dataTuple.episode
         let characters = dataTuple.characters
 
+        var createdString = ""
+        if let date = CNCharacterInformationCollectionViewViewModel.dateFormatter.date(from: episode.created) {
+            createdString = CNCharacterInformationCollectionViewViewModel.shortDateFormatter.string(from: date)
+        }
+
         cellViewModels = [
             .information(viewModels: [
                 .init(title: "Episode Name: ", value: episode.name),
                 .init(title: "Air Date: ", value: episode.air_date),
                 .init(title: "Episode: ", value: episode.episode),
-                .init(title: "Created On: ", value: episode.created),
+                .init(title: "Created On: ", value: createdString),
             ]),
             .characters(viewModels: characters.compactMap({ character in
                 return CNCharacterCollectionViewCellViewModel(characterName: character.name, characterStatus: character.status, characterImageURL: URL(string: character.image))

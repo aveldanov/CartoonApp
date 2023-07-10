@@ -30,6 +30,7 @@ final class CNEpisodeDetailViewController: UIViewController {
 
         setupViewHierarchy()
         setupViewLayout()
+        episodeDetailView.delegate = self
         viewModel.delegate = self
         viewModel.fetchEpisodeData()
     }
@@ -56,10 +57,19 @@ final class CNEpisodeDetailViewController: UIViewController {
     }
 }
 
-// MARK: - CNEpisodeDetailViewViewModelDelegate
+// MARK: - Delegates
 
 extension CNEpisodeDetailViewController: CNEpisodeDetailViewViewModelDelegate {
     func didFetchEpisodeDetail() {
         episodeDetailView.configure(with: viewModel )
+    }
+}
+
+extension CNEpisodeDetailViewController: CNEpisodeDetailViewDelegate {
+    func cnEpisodeDetailView(_ episodeDetailView: CNEpisodeDetailView, didSelect character: CNCharacter) {
+        let viewController = CNCharacterDetailViewController(viewModel: .init(character: character))
+        viewController.title = character.name
+        viewController.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
