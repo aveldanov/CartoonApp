@@ -8,5 +8,23 @@
 import UIKit
 
 final class CNEpisodeInfoCollectionViewCell: UICollectionViewCell {
-    
+    static let identifier = "CNEpisodeInfoCollectionViewCell"
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentView.backgroundColor = .red
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+
+    public func configure(with viewModel: CNEpisodeInfoCollectionViewCellViewModel) {
+
+    }
+
 }

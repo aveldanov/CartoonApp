@@ -12,6 +12,7 @@ final class CNEpisodeDetailView: UIView {
     private var viewModel: CNEpisodeDetailViewViewModel? {
         didSet {
             spinner.stopAnimating()
+            self.collectionView?.reloadData()
             self.collectionView?.isHidden = false
             UIView.animate(withDuration: 0.3) {
                 self.collectionView?.alpha = 1
@@ -87,7 +88,9 @@ final class CNEpisodeDetailView: UIView {
 
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(CNEpisodeInfoCollectionViewCell.self, forCellWithReuseIdentifier: CNEpisodeInfoCollectionViewCell.identifier)
+        collectionView.register(CNCharacterCollectionViewCell.self, forCellWithReuseIdentifier: CNCharacterCollectionViewCell.identifier)
+
         return collectionView
     }
 
@@ -116,17 +119,46 @@ extension CNEpisodeDetailView {
 extension CNEpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return viewModel?.cellViewModels.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        guard let sections = viewModel?.cellViewModels else{
+            return 0
+        }
+        let sectionType = sections[section]
+        switch sectionType {
+        case .information(let viewModels):
+            return viewModels.count
+        case .characters(let viewModels):
+            return viewModels.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .systemYellow
-        return cell
+
+        guard let sections = viewModel?.cellViewModels else{
+            fatalError("[CNEpisodeDetailView] no viewModel")
+        }
+        let sectionType = sections[indexPath.section]
+        switch sectionType {
+        case .information(let viewModels):
+            let cellViewModel = viewModels[indexPath.row]
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CNEpisodeInfoCollectionViewCell.identifier, for: indexPath) as? CNEpisodeInfoCollectionViewCell else {
+                fatalError("[CNEpisodeDetailView] no cell")
+            }
+            
+            cell.backgroundColor = .systemYellow
+            return cell
+        case .characters(let viewModels):
+            let cellViewModel = viewModels[indexPath.row]
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CNCharacterCollectionViewCell.identifier, for: indexPath) as? CNCharacterCollectionViewCell else {
+                fatalError("[CNEpisodeDetailView] no cell")
+            }
+
+            cell.backgroundColor = .systemCyan
+            return cell
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

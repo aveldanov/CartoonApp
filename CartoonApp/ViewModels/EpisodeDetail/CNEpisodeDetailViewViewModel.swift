@@ -14,14 +14,15 @@ protocol CNEpisodeDetailViewViewModelDelegate: AnyObject {
 final class CNEpisodeDetailViewViewModel {
 
     private let endpointUrl: URL?
-    private var dataTuple: (CNEpisode, [CNCharacter])?{
+    private var dataTuple: (episode: CNEpisode, characters: [CNCharacter])?{
         didSet {
+            createCellViewModels()
             delegate?.didFetchEpisodeDetail()
         }
     }
 
     public weak var delegate: CNEpisodeDetailViewViewModelDelegate?
-    public private(set) var sections: [SectionType] = []
+    public private(set) var cellViewModels: [SectionType] = []
 
     enum SectionType {
         case information(viewModels: [CNEpisodeInfoCollectionViewCellViewModel])
@@ -76,14 +77,35 @@ final class CNEpisodeDetailViewViewModel {
                 switch result {
                 case .success(let model):
                     characters.append(model)
-                case .failure(let failure):
+                case .failure:
                     break
                 }
             }
         }
 
         group.notify(queue: .main) {
-            self.dataTuple = (episode, characters)
+            self.dataTuple = (episode: episode, characters: characters)
         }
+    }
+
+    private func createCellViewModels() {
+        guard let dataTuple = dataTuple else {
+            return
+        }
+
+        let episode = dataTuple.episode
+        let characters = dataTuple.characters
+
+        cellViewModels = [
+            .information(viewModels: [
+                .init(title: "Episode Name: ", value: episode.name),
+                .init(title: "Air Date: ", value: episode.air_date),
+                .init(title: "Episode: ", value: episode.episode),
+                .init(title: "Created On: ", value: episode.created),
+            ]),
+            .characters(viewModels: characters.compactMap({ character in
+                return CNCharacterCollectionViewCellViewModel(characterName: character.name, characterStatus: character.status, characterImageURL: URL(string: character.url))
+            }))
+        ]
     }
 }
