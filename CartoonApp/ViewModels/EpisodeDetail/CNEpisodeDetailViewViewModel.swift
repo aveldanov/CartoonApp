@@ -85,6 +85,5 @@ final class CNEpisodeDetailViewViewModel {
         group.notify(queue: .main) {
             self.dataTuple = (episode, characters)
         }
-
     }
 }

@@ -11,5 +11,4 @@ import Foundation
 struct CNEpisodeInfoCollectionViewCellViewModel {
     public let title: String
     public let value: String
-
 }
