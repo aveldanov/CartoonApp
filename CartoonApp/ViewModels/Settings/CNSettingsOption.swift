@@ -47,7 +47,7 @@ enum CNSettingsOption: CaseIterable {
         case .privacy:
             return .systemYellow
         case .apiReference:
-            return .systemPink
+            return .systemTeal
         case .viewSeries:
             return .systemPurple
         case .viewCode:

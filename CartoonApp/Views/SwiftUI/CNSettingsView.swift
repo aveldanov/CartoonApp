@@ -9,17 +9,30 @@ import SwiftUI
 
 struct CNSettingsView: View {
 
-    let viewModel: CNSettingsViewViewModel?
+    let viewModel: CNSettingsViewViewModel
 
     init(viewModel: CNSettingsViewViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        ScrollView(.vertical) {
-            ForEach(strings, id: \.self) { string in
-                Text(string)
+        List(viewModel.cellViewModels) { viewModel in
+            HStack {
+                if let image = viewModel.image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .renderingMode(.template)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(Color.white)
+                        .padding(8)
+                        .background(Color(viewModel.iconContainerColor))
+                        .cornerRadius(6)
+                }
+                Text(viewModel.title)
+                    .padding(.leading, 10)
             }
+            .padding(.bottom, 3)
         }
     }
 }
@@ -27,7 +40,6 @@ struct CNSettingsView: View {
 struct CNSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         CNSettingsView(viewModel: .init(cellViewModels: CNSettingsOption.allCases.compactMap({
-
             return CNSettingsCellViewViewModel(type: $0)
         })))
     }
