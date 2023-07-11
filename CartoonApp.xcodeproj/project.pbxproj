@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		343D73D72A5D088A0082E9B8 /* CNSettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73D62A5D088A0082E9B8 /* CNSettingsViewViewModel.swift */; };
+		343D73D92A5D08D60082E9B8 /* CNSettingsCellViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73D82A5D08D60082E9B8 /* CNSettingsCellViewViewModel.swift */; };
+		343D73DB2A5D09A50082E9B8 /* CNSettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73DA2A5D09A50082E9B8 /* CNSettingsOption.swift */; };
+		343D73DE2A5D0EC10082E9B8 /* CNSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73DD2A5D0EC10082E9B8 /* CNSettingsView.swift */; };
 		3457D6D72A36A3A80067D9CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6D62A36A3A80067D9CC /* AppDelegate.swift */; };
 		3457D6D92A36A3A80067D9CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6D82A36A3A80067D9CC /* SceneDelegate.swift */; };
 		3457D6DB2A36A3A80067D9CC /* CNTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6DA2A36A3A80067D9CC /* CNTabBarViewController.swift */; };
@@ -56,6 +60,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		343D73D62A5D088A0082E9B8 /* CNSettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsViewViewModel.swift; sourceTree = "<group>"; };
+		343D73D82A5D08D60082E9B8 /* CNSettingsCellViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsCellViewViewModel.swift; sourceTree = "<group>"; };
+		343D73DA2A5D09A50082E9B8 /* CNSettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsOption.swift; sourceTree = "<group>"; };
+		343D73DD2A5D0EC10082E9B8 /* CNSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsView.swift; sourceTree = "<group>"; };
 		3457D6D32A36A3A80067D9CC /* CartoonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartoonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3457D6D62A36A3A80067D9CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3457D6D82A36A3A80067D9CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +125,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		343D73D52A5D08620082E9B8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				343D73DA2A5D09A50082E9B8 /* CNSettingsOption.swift */,
+				343D73D62A5D088A0082E9B8 /* CNSettingsViewViewModel.swift */,
+				343D73D82A5D08D60082E9B8 /* CNSettingsCellViewViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		343D73DC2A5D0E9C0082E9B8 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				343D73DD2A5D0EC10082E9B8 /* CNSettingsView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		3457D6CA2A36A3A80067D9CC = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +196,7 @@
 		3457D6EC2A36B7310067D9CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				343D73DC2A5D0E9C0082E9B8 /* SwiftUI */,
 				346567BD2A5BAA7C00B0AEB1 /* Footer */,
 				34F76B572A5533EA00E83E17 /* Character */,
 				34F76B562A5533C100E83E17 /* CharacterDetail */,
@@ -182,6 +209,7 @@
 		3457D6ED2A36B73A0067D9CC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				343D73D52A5D08620082E9B8 /* Settings */,
 				345B648D2A59080000E14535 /* EpisodeDetail */,
 				34F76B5E2A55347C00E83E17 /* CharacterDetail */,
 				34A99DF12A4BE593002B4916 /* CNCharacterCollectionViewCellViewModel.swift */,
@@ -411,14 +439,17 @@
 			files = (
 				345B64902A590DCE00E14535 /* CNEpisodeListView.swift in Sources */,
 				34B0E5332A44045700CBAEB4 /* CNGetAllCharactersResponse.swift in Sources */,
+				343D73DB2A5D09A50082E9B8 /* CNSettingsOption.swift in Sources */,
 				34A99DF02A4AA35F002B4916 /* CNCharacterCollectionViewCell.swift in Sources */,
 				348ADADB2A512EA8008D65CD /* CNCharacterDetailView.swift in Sources */,
 				34F76B602A5534B900E83E17 /* CNCharacterPhotoCollectionViewViewModel.swift in Sources */,
+				343D73D72A5D088A0082E9B8 /* CNSettingsViewViewModel.swift in Sources */,
 				345B64882A58F71400E14535 /* CNAPICacheManager.swift in Sources */,
 				34B0E5352A49187300CBAEB4 /* CNCharacterListViewViewModel.swift in Sources */,
 				346256232A3FF3A300EE09CB /* CNRequest.swift in Sources */,
 				348ADADD2A512EC3008D65CD /* CNCharacterDetailViewViewModel.swift in Sources */,
 				34F76B5B2A55344900E83E17 /* CNCharacterInformationCollectionViewCell.swift in Sources */,
+				343D73D92A5D08D60082E9B8 /* CNSettingsCellViewViewModel.swift in Sources */,
 				34F76B592A55342400E83E17 /* CNCharacterPhotoCollectionViewCell.swift in Sources */,
 				345B64982A5A684900E14535 /* CNSearchViewController.swift in Sources */,
 				3457D6DB2A36A3A80067D9CC /* CNTabBarViewController.swift in Sources */,
@@ -450,6 +481,7 @@
 				3457D6F62A36BEA10067D9CC /* CNCharacter.swift in Sources */,
 				34F76B622A5534CD00E83E17 /* CNCharacterInformationCollectionViewViewModel.swift in Sources */,
 				346256272A3FFAC600EE09CB /* CNOrigin.swift in Sources */,
+				343D73DE2A5D0EC10082E9B8 /* CNSettingsView.swift in Sources */,
 				34A99DF22A4BE593002B4916 /* CNCharacterCollectionViewCellViewModel.swift in Sources */,
 				348ADADF2A5233A8008D65CD /* CNFooterLoadingCollectionReusableView.swift in Sources */,
 				3457D6D92A36A3A80067D9CC /* SceneDelegate.swift in Sources */,
