@@ -5,6 +5,7 @@
 //  Created by Anton Veldanov on 6/11/23.
 //
 
+import StoreKit
 import SafariServices
 import SwiftUI
 import UIKit
@@ -78,9 +79,10 @@ final class CNSettingsViewController: UIViewController {
             let webViewController = SFSafariViewController(url: url)
             present(webViewController, animated: true)
         } else if option == .rateApp {
-            // Show rating prompt
-
+            // Show a rating prompt pop-up so user can rate the app
+            if let windowScene = view.window?.windowScene {
+                SKStoreReviewController.requestReview(in: windowScene)
+            }
         }
-
     }
 }

@@ -11,6 +11,8 @@
 		343D73D92A5D08D60082E9B8 /* CNSettingsCellViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73D82A5D08D60082E9B8 /* CNSettingsCellViewViewModel.swift */; };
 		343D73DB2A5D09A50082E9B8 /* CNSettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73DA2A5D09A50082E9B8 /* CNSettingsOption.swift */; };
 		343D73DE2A5D0EC10082E9B8 /* CNSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73DD2A5D0EC10082E9B8 /* CNSettingsView.swift */; };
+		343D73E12A5E7E420082E9B8 /* CNLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73E02A5E7E420082E9B8 /* CNLocationView.swift */; };
+		343D73E42A5E82E10082E9B8 /* CNLocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73E32A5E82E10082E9B8 /* CNLocationViewViewModel.swift */; };
 		3457D6D72A36A3A80067D9CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6D62A36A3A80067D9CC /* AppDelegate.swift */; };
 		3457D6D92A36A3A80067D9CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6D82A36A3A80067D9CC /* SceneDelegate.swift */; };
 		3457D6DB2A36A3A80067D9CC /* CNTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6DA2A36A3A80067D9CC /* CNTabBarViewController.swift */; };
@@ -64,6 +66,8 @@
 		343D73D82A5D08D60082E9B8 /* CNSettingsCellViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsCellViewViewModel.swift; sourceTree = "<group>"; };
 		343D73DA2A5D09A50082E9B8 /* CNSettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsOption.swift; sourceTree = "<group>"; };
 		343D73DD2A5D0EC10082E9B8 /* CNSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsView.swift; sourceTree = "<group>"; };
+		343D73E02A5E7E420082E9B8 /* CNLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationView.swift; sourceTree = "<group>"; };
+		343D73E32A5E82E10082E9B8 /* CNLocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationViewViewModel.swift; sourceTree = "<group>"; };
 		3457D6D32A36A3A80067D9CC /* CartoonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartoonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3457D6D62A36A3A80067D9CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3457D6D82A36A3A80067D9CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +147,22 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
+		343D73DF2A5E7E1D0082E9B8 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				343D73E02A5E7E420082E9B8 /* CNLocationView.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		343D73E22A5E82D60082E9B8 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				343D73E32A5E82E10082E9B8 /* CNLocationViewViewModel.swift */,
+			);
+			path = Locations;
+			sourceTree = "<group>";
+		};
 		3457D6CA2A36A3A80067D9CC = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +216,7 @@
 		3457D6EC2A36B7310067D9CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				343D73DF2A5E7E1D0082E9B8 /* Location */,
 				343D73DC2A5D0E9C0082E9B8 /* SwiftUI */,
 				346567BD2A5BAA7C00B0AEB1 /* Footer */,
 				34F76B572A5533EA00E83E17 /* Character */,
@@ -209,6 +230,7 @@
 		3457D6ED2A36B73A0067D9CC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				343D73E22A5E82D60082E9B8 /* Locations */,
 				343D73D52A5D08620082E9B8 /* Settings */,
 				345B648D2A59080000E14535 /* EpisodeDetail */,
 				34F76B5E2A55347C00E83E17 /* CharacterDetail */,
@@ -465,6 +487,8 @@
 				3457D6FF2A36C2850067D9CC /* CNEpisodesViewController.swift in Sources */,
 				3462562D2A3FFCD600EE09CB /* CNCharacterGender.swift in Sources */,
 				3457D6FB2A36C2680067D9CC /* CNCharactersViewController.swift in Sources */,
+				343D73E12A5E7E420082E9B8 /* CNLocationView.swift in Sources */,
+				343D73E42A5E82E10082E9B8 /* CNLocationViewViewModel.swift in Sources */,
 				34F76B5D2A55345A00E83E17 /* CNCharacterEpisodeCollectionViewCell.swift in Sources */,
 				34A99DEE2A494EAD002B4916 /* Extensions.swift in Sources */,
 				345B648A2A5906EE00E14535 /* CNEpisodeDetailViewViewModel.swift in Sources */,
@@ -626,6 +650,8 @@
 				DEVELOPMENT_TEAM = W2AXPM9L47;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CartoonApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cartoon App";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -653,6 +679,8 @@
 				DEVELOPMENT_TEAM = W2AXPM9L47;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CartoonApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cartoon App";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

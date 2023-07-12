@@ -9,6 +9,7 @@ import Foundation
 
 /// Object that represents a single API call
 final class CNRequest {
+    
     // base url
     // endpoint
     // path component
@@ -124,9 +125,8 @@ final class CNRequest {
     }
 }
 
-
 extension CNRequest {
     static let listCharactersRequest = CNRequest(endpoint: .character)
     static let listEpisodesRequest = CNRequest(endpoint: .episode)
-
+    static let listLocationsRequest = CNRequest(endpoint: .location)
 }

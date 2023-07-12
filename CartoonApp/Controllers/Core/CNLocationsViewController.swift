@@ -9,11 +9,17 @@ import UIKit
 
 final class CNLocationsViewController: UIViewController {
 
+    private let primaryView = CNLocationView()
+
+    private let viewModel = CNLocationViewViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = "Locations"
         addSearchButton()
+        setupViewHierarchy()
+        setupViewLayout()
     }
 
     private func addSearchButton() {
@@ -25,5 +31,18 @@ final class CNLocationsViewController: UIViewController {
 
     }
 
+    private func setupViewHierarchy() {
+        view.addSubviews(primaryView)
+    }
 
+    private func setupViewLayout() {
+        primaryView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            primaryView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            primaryView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            primaryView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            primaryView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 }
