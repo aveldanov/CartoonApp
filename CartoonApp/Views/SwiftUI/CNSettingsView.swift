@@ -31,8 +31,10 @@ struct CNSettingsView: View {
                 }
                 Text(viewModel.title)
                     .padding(.leading, 10)
+                Spacer() // pushes content to the trailing edge
             }
             .padding(.bottom, 3)
+            .contentShape(Rectangle())
             .onTapGesture {
                 viewModel.onTapHandler(viewModel.type)
             }
