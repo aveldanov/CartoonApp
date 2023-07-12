@@ -5,6 +5,7 @@
 //  Created by Anton Veldanov on 6/11/23.
 //
 
+import SafariServices
 import SwiftUI
 import UIKit
 
@@ -72,22 +73,14 @@ final class CNSettingsViewController: UIViewController {
             return
         }
 
-        switch option {
-        case .rateApp:
-            // Show prompt
-            break
-        case .contactUs:
-            // 
-        case .terms:
-            <#code#>
-        case .privacy:
-            <#code#>
-        case .apiReference:
-            <#code#>
-        case .viewSeries:
-            <#code#>
-        case .viewCode:
-            <#code#>
+        if let url = option.targetUrl {
+            // Open web page
+            let webViewController = SFSafariViewController(url: url)
+            present(webViewController, animated: true)
+        } else if option == .rateApp {
+            // Show rating prompt
+
         }
+
     }
 }
