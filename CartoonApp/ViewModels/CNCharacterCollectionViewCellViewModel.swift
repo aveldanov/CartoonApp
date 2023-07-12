@@ -9,14 +9,9 @@ import Foundation
 
 final class CNCharacterCollectionViewCellViewModel: Hashable {
 
-
-
     let characterName: String
     let characterStatus: CNCharacterStatus
     let characterImageURL: URL?
-
-
-
 
     // MARK: - Init
 

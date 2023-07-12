@@ -9,6 +9,4 @@ import Foundation
 
 struct CNSettingsViewViewModel {
     let cellViewModels: [CNSettingsCellViewViewModel]
-
-
 }

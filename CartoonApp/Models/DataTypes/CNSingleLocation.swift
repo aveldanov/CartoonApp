@@ -8,6 +8,7 @@
 import Foundation
 
 struct CNSingleLocation: Codable {
+
     let name: String
     let url: String
 }

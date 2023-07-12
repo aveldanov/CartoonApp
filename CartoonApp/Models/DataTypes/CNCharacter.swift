@@ -8,6 +8,7 @@
 import Foundation
 
 struct CNCharacter: Codable {
+    
     let id: Int
     let name: String
     let status: CNCharacterStatus

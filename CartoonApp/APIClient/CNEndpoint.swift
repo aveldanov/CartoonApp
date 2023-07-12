@@ -9,6 +9,7 @@ import Foundation
 
 /// Represents unique API endpoints
 @frozen enum CNEndpoint: String, CaseIterable, Hashable {
+
     case character
     case location
     case episode

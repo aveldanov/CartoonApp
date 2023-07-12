@@ -47,7 +47,6 @@ final class CNCharacterPhotoCollectionViewCell: UICollectionViewCell {
         ])
     }
 
-
     public func configure(with viewModel: CNCharacterPhotoCollectionViewViewModel) {
         viewModel.fetchImage { [weak self] result in
             switch result {

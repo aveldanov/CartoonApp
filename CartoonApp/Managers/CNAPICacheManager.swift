@@ -17,7 +17,6 @@ final class CNAPICacheManager {
 
     private var cache = NSCache<NSString, NSData>()
 
-
     init() {
         setupCache()
     }

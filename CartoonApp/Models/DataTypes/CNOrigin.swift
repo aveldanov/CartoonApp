@@ -8,6 +8,7 @@
 import Foundation
 
 struct CNOrigin: Codable {
+    
     let name: String
     let url: String
 }

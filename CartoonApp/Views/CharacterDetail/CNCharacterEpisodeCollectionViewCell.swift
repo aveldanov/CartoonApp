@@ -92,7 +92,5 @@ class CNCharacterEpisodeCollectionViewCell: UICollectionViewCell {
         viewModel.fetchEpisode()
 
         contentView.layer.borderColor = viewModel.borderColor.cgColor
-
     }
-
 }

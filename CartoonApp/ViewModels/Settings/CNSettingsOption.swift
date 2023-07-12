@@ -9,6 +9,7 @@ import UIKit
 
 
 enum CNSettingsOption: CaseIterable {
+
     case rateApp
     case contactUs
     case terms

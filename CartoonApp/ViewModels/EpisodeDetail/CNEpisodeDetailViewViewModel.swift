@@ -35,7 +35,6 @@ final class CNEpisodeDetailViewViewModel {
         self.endpointUrl = endpointUrl
     }
 
-
     // MARK: - Public methods
 
     /// Fetch backing episode model

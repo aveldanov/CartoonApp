@@ -9,6 +9,7 @@ import Foundation
 
 /// Primary API Service object to get data
 final class CNService {
+    
     /// Shared singleton instance
     static let shared = CNService()
 
@@ -64,8 +65,6 @@ final class CNService {
             }
         }
         task.resume()
-
-
     }
 
     // MARK: - Private Methods
@@ -80,5 +79,3 @@ final class CNService {
         return request
     }
 }
-
-// Test comment

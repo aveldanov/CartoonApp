@@ -34,6 +34,4 @@ struct CNSettingsCellViewViewModel: Identifiable {
     public var iconContainerColor: UIColor {
         return type.iconContainerColor
     }
-
-
 }

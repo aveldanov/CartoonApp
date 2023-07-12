@@ -75,5 +75,4 @@ final class CNCharacterEpisodeCollectionViewViewModel: Hashable, Equatable {
     static func == (lhs: CNCharacterEpisodeCollectionViewViewModel, rhs: CNCharacterEpisodeCollectionViewViewModel) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
-
 }

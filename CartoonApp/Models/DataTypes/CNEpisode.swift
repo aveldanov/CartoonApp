@@ -9,6 +9,7 @@ import Foundation
 
 
 struct CNEpisode: Codable, CNEpisodeDataRenderProtocol {
+    
     let id: Int
     let name: String
     let air_date: String
@@ -16,5 +17,4 @@ struct CNEpisode: Codable, CNEpisodeDataRenderProtocol {
     let characters: [String]
     let url: String
     let created: String
-
 }

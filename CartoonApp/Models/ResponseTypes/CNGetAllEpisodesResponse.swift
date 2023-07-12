@@ -8,6 +8,7 @@
 import Foundation
 
 struct CNGetAllEpisodesResponse: Codable {
+    
     struct Info: Codable {
         let count: Int
         let pages: Int

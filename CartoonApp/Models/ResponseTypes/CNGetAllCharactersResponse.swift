@@ -8,6 +8,7 @@
 import Foundation
 
 struct CNGetAllCharactersResponse: Codable {
+
     struct Info: Codable {
         let count: Int
         let pages: Int
@@ -18,4 +19,3 @@ struct CNGetAllCharactersResponse: Codable {
     let info: Info
     let results: [CNCharacter]
 }
-

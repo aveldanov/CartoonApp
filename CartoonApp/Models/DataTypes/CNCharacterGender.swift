@@ -9,8 +9,9 @@ import Foundation
 //'Female', 'Male', 'Genderless' or 'unknown'
 
 enum CNCharacterGender: String, Codable {
-case female = "Female"
-case male = "Male"
-case genderless = "Genderless"
-case `unknown` = "unknown"
+    
+    case female = "Female"
+    case male = "Male"
+    case genderless = "Genderless"
+    case `unknown` = "unknown"
 }
