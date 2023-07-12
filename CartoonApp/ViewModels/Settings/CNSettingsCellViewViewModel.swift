@@ -7,16 +7,18 @@
 
 import UIKit
 
-struct CNSettingsCellViewViewModel: Identifiable, Hashable {
+struct CNSettingsCellViewViewModel: Identifiable {
 
     let id = UUID()
 
-    private let type: CNSettingsOption
+    public let type: CNSettingsOption
+    public let onTapHandler: (CNSettingsOption) -> Void
 
     // MARK: - Init
 
-    init(type: CNSettingsOption) {
+    init(type: CNSettingsOption, onTapHandler: @escaping (CNSettingsOption) -> Void) {
         self.type = type
+        self.onTapHandler = onTapHandler
     }
 
     // MARK: - Public properties and methods

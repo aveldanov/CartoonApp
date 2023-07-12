@@ -33,6 +33,10 @@ struct CNSettingsView: View {
                     .padding(.leading, 10)
             }
             .padding(.bottom, 3)
+            .onTapGesture {
+                viewModel.onTapHandler(viewModel.type)
+            }
+            .background(Color.red)
         }
     }
 }
@@ -40,7 +44,9 @@ struct CNSettingsView: View {
 struct CNSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         CNSettingsView(viewModel: .init(cellViewModels: CNSettingsOption.allCases.compactMap({
-            return CNSettingsCellViewViewModel(type: $0)
+            return CNSettingsCellViewViewModel(type: $0) { option in
+
+            }
         })))
     }
 }
