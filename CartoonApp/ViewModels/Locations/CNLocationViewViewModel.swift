@@ -23,9 +23,9 @@ final class CNLocationViewViewModel {
     public func fetchLocations() {
         CNService.shared.execute(.listLocationsRequest, expecting: String.self) { [weak self] result in
             switch result {
-            case .success(let model)
+            case .success(let model):
                 break
-            case .failure(let error)
+            case .failure(let error):
                 break
             }
         }
