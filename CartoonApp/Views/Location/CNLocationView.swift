@@ -22,7 +22,7 @@ final class CNLocationView: UIView {
 
     private let tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(CNLocationTableViewCell.self, forCellReuseIdentifier: CNLocationTableViewCell.identifier)
         table.alpha = 0
         table.isHidden = true
         return table
@@ -90,17 +90,23 @@ extension CNLocationView: UITableViewDelegate {
 }
 
 extension CNLocationView: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return viewModel?.cellViewModels.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Hello"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CNLocationTableViewCell.identifier, for: indexPath) as? CNLocationTableViewCell else {
+            fatalError()
+        }
+
+        guard let cellViewModels = viewModel?.cellViewModels else {
+            fatalError()
+        }
+
+        let cellViewModel = cellViewModels[indexPath.row]
+
+        cell.textLabel?.text = cellViewModel.name
         return cell
     }
 }

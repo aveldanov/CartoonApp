@@ -15,13 +15,22 @@ final class CNLocationViewViewModel {
 
     weak var delegate: CNLocationViewViewModelDelegate?
 
-    private var locations: [CNLocation] = []
+    private var locations: [CNLocation] = [] {
+        didSet {
+            for location in locations {
+                let cellViewModel = CNLocationTableViewCellViewModel(location: location)
+                if !cellViewModels.contains(cellViewModel) {
+                    cellViewModels.append(cellViewModel)
+                }
+            }
+        }
+    }
 
     // Location response info
     // Will contain NEXT url if present
     private var apiInfo: CNGetAllLocationsResponse.Info?
 
-    private var cellViewModels: [String] = []
+    public private(set) var cellViewModels: [CNLocationTableViewCellViewModel] = []
 
     init() {
         

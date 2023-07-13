@@ -14,6 +14,8 @@
 		343D73E12A5E7E420082E9B8 /* CNLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73E02A5E7E420082E9B8 /* CNLocationView.swift */; };
 		343D73E42A5E82E10082E9B8 /* CNLocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73E32A5E82E10082E9B8 /* CNLocationViewViewModel.swift */; };
 		3456A07E2A5FBA3100DF9B9C /* CNGetAllLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3456A07D2A5FBA3100DF9B9C /* CNGetAllLocationsResponse.swift */; };
+		3456A0802A5FBC7700DF9B9C /* CNLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3456A07F2A5FBC7700DF9B9C /* CNLocationTableViewCell.swift */; };
+		3456A0822A5FBD4800DF9B9C /* CNLocationTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3456A0812A5FBD4800DF9B9C /* CNLocationTableViewCellViewModel.swift */; };
 		3457D6D72A36A3A80067D9CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6D62A36A3A80067D9CC /* AppDelegate.swift */; };
 		3457D6D92A36A3A80067D9CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6D82A36A3A80067D9CC /* SceneDelegate.swift */; };
 		3457D6DB2A36A3A80067D9CC /* CNTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6DA2A36A3A80067D9CC /* CNTabBarViewController.swift */; };
@@ -70,6 +72,8 @@
 		343D73E02A5E7E420082E9B8 /* CNLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationView.swift; sourceTree = "<group>"; };
 		343D73E32A5E82E10082E9B8 /* CNLocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationViewViewModel.swift; sourceTree = "<group>"; };
 		3456A07D2A5FBA3100DF9B9C /* CNGetAllLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNGetAllLocationsResponse.swift; sourceTree = "<group>"; };
+		3456A07F2A5FBC7700DF9B9C /* CNLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationTableViewCell.swift; sourceTree = "<group>"; };
+		3456A0812A5FBD4800DF9B9C /* CNLocationTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		3457D6D32A36A3A80067D9CC /* CartoonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartoonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3457D6D62A36A3A80067D9CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3457D6D82A36A3A80067D9CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				343D73E02A5E7E420082E9B8 /* CNLocationView.swift */,
+				3456A07F2A5FBC7700DF9B9C /* CNLocationTableViewCell.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				343D73E32A5E82E10082E9B8 /* CNLocationViewViewModel.swift */,
+				3456A0812A5FBD4800DF9B9C /* CNLocationTableViewCellViewModel.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -479,10 +485,12 @@
 				345B64982A5A684900E14535 /* CNSearchViewController.swift in Sources */,
 				3457D6DB2A36A3A80067D9CC /* CNTabBarViewController.swift in Sources */,
 				3457D6F42A36BE8A0067D9CC /* CNLocation.swift in Sources */,
+				3456A0822A5FBD4800DF9B9C /* CNLocationTableViewCellViewModel.swift in Sources */,
 				346256252A3FF43700EE09CB /* CNEndpoint.swift in Sources */,
 				345B64942A59146100E14535 /* CNGetAllEpisodesResponse.swift in Sources */,
 				3462562B2A3FFCBB00EE09CB /* CNCharacterStatus.swift in Sources */,
 				3457D7012A36C28F0067D9CC /* CNSettingsViewController.swift in Sources */,
+				3456A0802A5FBC7700DF9B9C /* CNLocationTableViewCell.swift in Sources */,
 				346567BC2A5BA1CA00B0AEB1 /* CNEpisodeInfoCollectionViewCellViewModel.swift in Sources */,
 				345B64922A59112600E14535 /* CNEpisodeListViewViewModel.swift in Sources */,
 				3457D6FD2A36C27B0067D9CC /* CNLocationsViewController.swift in Sources */,
