@@ -20,6 +20,8 @@ final class CNLocationsViewController: UIViewController {
         addSearchButton()
         setupViewHierarchy()
         setupViewLayout()
+        viewModel.delegate = self
+        viewModel.fetchLocations()
     }
 
     private func addSearchButton() {

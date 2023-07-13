@@ -7,7 +7,13 @@
 
 import Foundation
 
+protocol CNLocationViewViewModelDelegate: AnyObject {
+    func didFetchInitialLocations()
+}
+
 final class CNLocationViewViewModel {
+
+    weak var delegate: CNLocationViewViewModelDelegate?
 
     private var locations: [CNLocation] = []
 
@@ -24,7 +30,7 @@ final class CNLocationViewViewModel {
         CNService.shared.execute(.listLocationsRequest, expecting: String.self) { [weak self] result in
             switch result {
             case .success(let model):
-                break
+                self?.delegate?.didFetchInitialLocations()
             case .failure(let error):
                 break
             }
