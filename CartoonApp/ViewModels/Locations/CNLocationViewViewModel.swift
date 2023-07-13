@@ -19,6 +19,7 @@ final class CNLocationViewViewModel {
 
     // Location response info
     // Will contain NEXT url if present
+    private var apiInfo: CNGetAllLocationsResponse.Info?
 
     private var cellViewModels: [String] = []
 
@@ -27,10 +28,14 @@ final class CNLocationViewViewModel {
     }
 
     public func fetchLocations() {
-        CNService.shared.execute(.listLocationsRequest, expecting: String.self) { [weak self] result in
+        CNService.shared.execute(.listLocationsRequest, expecting: CNGetAllLocationsResponse.self) { [weak self] result in
             switch result {
             case .success(let model):
-                self?.delegate?.didFetchInitialLocations()
+                self?.apiInfo = model.info
+                self?.locations = model.results
+                DispatchQueue.main.async {
+                    self?.delegate?.didFetchInitialLocations()
+                }
             case .failure(let error):
                 break
             }

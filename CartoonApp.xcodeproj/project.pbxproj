@@ -13,6 +13,7 @@
 		343D73DE2A5D0EC10082E9B8 /* CNSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73DD2A5D0EC10082E9B8 /* CNSettingsView.swift */; };
 		343D73E12A5E7E420082E9B8 /* CNLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73E02A5E7E420082E9B8 /* CNLocationView.swift */; };
 		343D73E42A5E82E10082E9B8 /* CNLocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343D73E32A5E82E10082E9B8 /* CNLocationViewViewModel.swift */; };
+		3456A07E2A5FBA3100DF9B9C /* CNGetAllLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3456A07D2A5FBA3100DF9B9C /* CNGetAllLocationsResponse.swift */; };
 		3457D6D72A36A3A80067D9CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6D62A36A3A80067D9CC /* AppDelegate.swift */; };
 		3457D6D92A36A3A80067D9CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6D82A36A3A80067D9CC /* SceneDelegate.swift */; };
 		3457D6DB2A36A3A80067D9CC /* CNTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457D6DA2A36A3A80067D9CC /* CNTabBarViewController.swift */; };
@@ -68,6 +69,7 @@
 		343D73DD2A5D0EC10082E9B8 /* CNSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNSettingsView.swift; sourceTree = "<group>"; };
 		343D73E02A5E7E420082E9B8 /* CNLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationView.swift; sourceTree = "<group>"; };
 		343D73E32A5E82E10082E9B8 /* CNLocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationViewViewModel.swift; sourceTree = "<group>"; };
+		3456A07D2A5FBA3100DF9B9C /* CNGetAllLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNGetAllLocationsResponse.swift; sourceTree = "<group>"; };
 		3457D6D32A36A3A80067D9CC /* CartoonApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CartoonApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3457D6D62A36A3A80067D9CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3457D6D82A36A3A80067D9CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 			children = (
 				34B0E5322A44045700CBAEB4 /* CNGetAllCharactersResponse.swift */,
 				345B64932A59146100E14535 /* CNGetAllEpisodesResponse.swift */,
+				3456A07D2A5FBA3100DF9B9C /* CNGetAllLocationsResponse.swift */,
 			);
 			path = ResponseTypes;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				346567BC2A5BA1CA00B0AEB1 /* CNEpisodeInfoCollectionViewCellViewModel.swift in Sources */,
 				345B64922A59112600E14535 /* CNEpisodeListViewViewModel.swift in Sources */,
 				3457D6FD2A36C27B0067D9CC /* CNLocationsViewController.swift in Sources */,
+				3456A07E2A5FBA3100DF9B9C /* CNGetAllLocationsResponse.swift in Sources */,
 				34B0E5372A49190B00CBAEB4 /* CNCharacterListView.swift in Sources */,
 				3457D6FF2A36C2850067D9CC /* CNEpisodesViewController.swift in Sources */,
 				3462562D2A3FFCD600EE09CB /* CNCharacterGender.swift in Sources */,

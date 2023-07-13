@@ -48,3 +48,11 @@ final class CNLocationsViewController: UIViewController {
         ])
     }
 }
+
+// MARK: - CNLocationViewViewModelDelegate
+
+extension CNLocationsViewController: CNLocationViewViewModelDelegate {
+    func didFetchInitialLocations() {
+        primaryView.configure(with: viewModel)
+    }
+}
