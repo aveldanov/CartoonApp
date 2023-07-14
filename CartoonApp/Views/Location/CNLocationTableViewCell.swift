@@ -37,6 +37,8 @@ final class CNLocationTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .systemBackground
+        setupViewHierarchy()
+        setupViewLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -60,12 +62,20 @@ final class CNLocationTableViewCell: UITableViewCell {
         dimensionLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 7),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -7),
-            nameLabel.bottomAnchor.constraint(equalTo: statusLabel.topAnchor),
-            nameLabel.heightAnchor.constraint(equalToConstant: 30),
-        ])
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
 
+            typeLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+
+            dimensionLabel.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 10),
+            dimensionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            dimensionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            dimensionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+
+        ])
     }
 
     public func configure(with viewModel: CNLocationTableViewCellViewModel) {

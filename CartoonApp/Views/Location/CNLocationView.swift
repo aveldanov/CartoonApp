@@ -106,7 +106,7 @@ extension CNLocationView: UITableViewDataSource {
 
         let cellViewModel = cellViewModels[indexPath.row]
 
-        cell.textLabel?.text = cellViewModel.name
+        cell.configure(with: cellViewModel)
         return cell
     }
 }
