@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol CNLocationViewDelegate: AnyObject {
+    func cnLocationView(_ locationView: CNLocationView, didSelect location: CNLocation)
+}
+
 final class CNLocationView: UIView {
 
-    var viewModel: CNLocationViewViewModel? {
+    public weak var delegate: CNLocationViewDelegate?
+
+    private var viewModel: CNLocationViewViewModel? {
         didSet {
             spinner.stopAnimating()
             tableView.isHidden = false
@@ -21,7 +27,7 @@ final class CNLocationView: UIView {
     }
 
     private let tableView: UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: .zero, style: .grouped)
         table.register(CNLocationTableViewCell.self, forCellReuseIdentifier: CNLocationTableViewCell.identifier)
         table.alpha = 0
         table.isHidden = true
@@ -84,8 +90,11 @@ final class CNLocationView: UIView {
 extension CNLocationView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // Notify controller of selection
 
+        guard let locationModel = viewModel?.location(at: indexPath.row) else {
+            return
+        }
+        delegate?.cnLocationView(self, didSelect: locationModel)
     }
 }
 

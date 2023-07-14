@@ -36,6 +36,13 @@ final class CNLocationViewViewModel {
         
     }
 
+    public func location(at index: Int) -> CNLocation? {
+        guard index >= locations.count else {
+            return nil
+        }
+        return self.locations[index]
+    }
+
     public func fetchLocations() {
         CNService.shared.execute(.listLocationsRequest, expecting: CNGetAllLocationsResponse.self) { [weak self] result in
             switch result {

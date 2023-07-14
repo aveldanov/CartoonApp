@@ -21,14 +21,16 @@ final class CNLocationTableViewCell: UITableViewCell {
     private let typeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.font = .systemFont(ofSize: 15, weight: .regular)
+        label.textColor = .secondaryLabel
         return label
     }()
 
     private let dimensionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.font = .systemFont(ofSize: 15, weight: .light)
+        label.textColor = .secondaryLabel
         return label
     }()
 
@@ -36,9 +38,9 @@ final class CNLocationTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .systemBackground
         setupViewHierarchy()
         setupViewLayout()
+        accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
     }
 
     required init?(coder: NSCoder) {
