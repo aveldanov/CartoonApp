@@ -23,7 +23,7 @@ struct CNLocationTableViewCellViewModel: Hashable, Equatable {
         return location.type
     }
 
-    public var dimention: String {
+    public var dimension: String {
         return location.dimension
     }
 
@@ -35,6 +35,6 @@ struct CNLocationTableViewCellViewModel: Hashable, Equatable {
         hasher.combine(location.id)
         hasher.combine(name)
         hasher.combine(type)
-        hasher.combine(dimention)
+        hasher.combine(dimension)
     }
 }
