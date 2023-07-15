@@ -7,6 +7,11 @@
 
 import UIKit
 
+// Dynamic Search Option View
+// Render Results
+// Render No Results sero state
+// Searching API call
+
 /// Configurable Search View Controller
 final class CNSearchViewController: UIViewController {
 
