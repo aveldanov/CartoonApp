@@ -17,6 +17,7 @@ final class CNLocationsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = "Locations"
+        primaryView.delegate = self
         addSearchButton()
         setupViewHierarchy()
         setupViewLayout()
@@ -54,5 +55,18 @@ final class CNLocationsViewController: UIViewController {
 extension CNLocationsViewController: CNLocationViewViewModelDelegate {
     func didFetchInitialLocations() {
         primaryView.configure(with: viewModel)
+    }
+}
+
+// MARK: - CNLocationViewDelegate
+
+extension CNLocationsViewController: CNLocationViewDelegate {
+    func cnLocationView(_ locationView: CNLocationView, didSelect location: CNLocation) {
+        let locationDetailViewController = CNLocationDetailViewController(locaiton: location)
+        locationDetailViewController.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(locationDetailViewController, animated: true)
+
+
+        print("YOUYOYOYOYOYOYOY")
     }
 }

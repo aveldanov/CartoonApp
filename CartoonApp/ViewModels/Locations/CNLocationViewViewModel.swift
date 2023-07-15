@@ -37,7 +37,7 @@ final class CNLocationViewViewModel {
     }
 
     public func location(at index: Int) -> CNLocation? {
-        guard index >= locations.count else {
+        guard index < locations.count else {
             return nil
         }
         return self.locations[index]

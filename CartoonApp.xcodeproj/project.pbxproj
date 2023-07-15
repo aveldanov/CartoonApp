@@ -44,6 +44,7 @@
 		3462562D2A3FFCD600EE09CB /* CNCharacterGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462562C2A3FFCD600EE09CB /* CNCharacterGender.swift */; };
 		346567BA2A5BA1AF00B0AEB1 /* CNEpisodeInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346567B92A5BA1AF00B0AEB1 /* CNEpisodeInfoCollectionViewCell.swift */; };
 		346567BC2A5BA1CA00B0AEB1 /* CNEpisodeInfoCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346567BB2A5BA1CA00B0AEB1 /* CNEpisodeInfoCollectionViewCellViewModel.swift */; };
+		3477C8122A625A2A00E347A8 /* CNLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3477C8112A625A2A00E347A8 /* CNLocationDetailViewController.swift */; };
 		348ADAD92A512D28008D65CD /* CNCharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348ADAD82A512D28008D65CD /* CNCharacterDetailViewController.swift */; };
 		348ADADB2A512EA8008D65CD /* CNCharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348ADADA2A512EA8008D65CD /* CNCharacterDetailView.swift */; };
 		348ADADD2A512EC3008D65CD /* CNCharacterDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348ADADC2A512EC3008D65CD /* CNCharacterDetailViewViewModel.swift */; };
@@ -104,6 +105,7 @@
 		3462562C2A3FFCD600EE09CB /* CNCharacterGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCharacterGender.swift; sourceTree = "<group>"; };
 		346567B92A5BA1AF00B0AEB1 /* CNEpisodeInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		346567BB2A5BA1CA00B0AEB1 /* CNEpisodeInfoCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEpisodeInfoCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		3477C8112A625A2A00E347A8 /* CNLocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNLocationDetailViewController.swift; sourceTree = "<group>"; };
 		348ADAD82A512D28008D65CD /* CNCharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCharacterDetailViewController.swift; sourceTree = "<group>"; };
 		348ADADA2A512EA8008D65CD /* CNCharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCharacterDetailView.swift; sourceTree = "<group>"; };
 		348ADADC2A512EC3008D65CD /* CNCharacterDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCharacterDetailViewViewModel.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				348ADAD82A512D28008D65CD /* CNCharacterDetailViewController.swift */,
+				3477C8112A625A2A00E347A8 /* CNLocationDetailViewController.swift */,
 				34DD81CE2A57D6C900985887 /* CNEpisodeDetailViewController.swift */,
 			);
 			path = DetailControllers;
@@ -469,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				345B64902A590DCE00E14535 /* CNEpisodeListView.swift in Sources */,
+				3477C8122A625A2A00E347A8 /* CNLocationDetailViewController.swift in Sources */,
 				34B0E5332A44045700CBAEB4 /* CNGetAllCharactersResponse.swift in Sources */,
 				343D73DB2A5D09A50082E9B8 /* CNSettingsOption.swift in Sources */,
 				34A99DF02A4AA35F002B4916 /* CNCharacterCollectionViewCell.swift in Sources */,
