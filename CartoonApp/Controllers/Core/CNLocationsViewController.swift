@@ -31,7 +31,9 @@ final class CNLocationsViewController: UIViewController {
 
     @objc
     private func didTapSearch() {
-
+        let searchViewController = CNSearchViewController(config: .init(type: .location))
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(searchViewController, animated: true)
     }
 
     private func setupViewHierarchy() {
@@ -65,8 +67,5 @@ extension CNLocationsViewController: CNLocationViewDelegate {
         let locationDetailViewController = CNLocationDetailViewController(location: location)
         locationDetailViewController.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(locationDetailViewController, animated: true)
-
-
-        print("YOUYOYOYOYOYOYOY")
     }
 }

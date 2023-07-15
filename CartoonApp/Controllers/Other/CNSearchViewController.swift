@@ -15,11 +15,24 @@ final class CNSearchViewController: UIViewController {
             case character
             case episode
             case location
+
+            var title: String {
+                switch self {
+                case .character:
+                    return "Search Characters"
+                case .episode:
+                    return "Search Episodes"
+                case .location:
+                    return "Search Locations"
+                }
+            }
         }
         let type: `Type`
     }
 
     private let config: Config
+
+    // MARK: - Init
 
     init(config: Config) {
         self.config = config
@@ -30,9 +43,11 @@ final class CNSearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Search"
+        title = config.type.title
         view.backgroundColor = .systemBackground
     }
 }

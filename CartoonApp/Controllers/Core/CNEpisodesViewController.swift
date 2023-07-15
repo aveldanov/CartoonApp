@@ -27,7 +27,9 @@ final class CNEpisodesViewController: UIViewController {
 
     @objc
     private func didTapSearch() {
-
+        let searchViewController = CNSearchViewController(config: .init(type: .episode))
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(searchViewController, animated: true)
     }
 
     private func setupViewHierarchy() {
