@@ -10,11 +10,12 @@ import UIKit
 /// Configurable Search View Controller
 final class CNSearchViewController: UIViewController {
 
+    // MARK: - Search Configuration
     struct Config {
         enum `Type` {
-            case character
-            case episode
-            case location
+            case character // name status gender
+            case episode // name
+            case location //name type
 
             var title: String {
                 switch self {
