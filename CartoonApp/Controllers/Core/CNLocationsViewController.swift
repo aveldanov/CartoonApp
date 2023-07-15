@@ -62,7 +62,7 @@ extension CNLocationsViewController: CNLocationViewViewModelDelegate {
 
 extension CNLocationsViewController: CNLocationViewDelegate {
     func cnLocationView(_ locationView: CNLocationView, didSelect location: CNLocation) {
-        let locationDetailViewController = CNLocationDetailViewController(locaiton: location)
+        let locationDetailViewController = CNLocationDetailViewController(location: location)
         locationDetailViewController.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(locationDetailViewController, animated: true)
 
