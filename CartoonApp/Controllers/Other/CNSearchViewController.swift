@@ -36,12 +36,15 @@ final class CNSearchViewController: UIViewController {
         let type: `Type`
     }
 
-    private let config: Config
+    private let searchView: CNSearchView
+    private let viewModel: CNSearchViewViewModel
 
     // MARK: - Init
 
     init(config: Config) {
-        self.config = config
+        let viewModel = CNSearchViewViewModel(config: config)
+        self.viewModel = viewModel
+        self.searchView = CNSearchView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -53,7 +56,32 @@ final class CNSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = config.type.title
+        title = viewModel.config.type.title
         view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .done, target: self, action: #selector(didTapExecuteSearch))
+
+        setupViewHierarchy()
+        setupViewLayout()
+    }
+
+    @objc
+    private func didTapExecuteSearch() {
+//        viewModel.executeSearch()
+        
+    }
+
+    private func setupViewHierarchy() {
+        view.addSubview(searchView)
+    }
+
+    private func setupViewLayout() {
+        searchView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            searchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            searchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            searchView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }

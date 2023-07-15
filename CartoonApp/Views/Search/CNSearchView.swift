@@ -15,6 +15,8 @@ final class CNSearchView: UIView {
 
     // SearchInputView(bar, seleciton buttons)
     // no results view
+
+    private let noResultsView = CNNoSearchResultsView()
     // results collection view
 
     // MARK: - Init
@@ -22,7 +24,7 @@ final class CNSearchView: UIView {
     init(frame: CGRect, viewModel: CNSearchViewViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
-        backgroundColor = .red
+        backgroundColor = .systemBackground
         setupViewHierarchy()
         setupViewLayout()
     }
@@ -32,11 +34,18 @@ final class CNSearchView: UIView {
     }
 
     private func setupViewHierarchy() {
-
+        addSubviews(noResultsView)
     }
 
     private func setupViewLayout() {
         translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+
+            noResultsView.widthAnchor.constraint(equalToConstant: 150),
+            noResultsView.heightAnchor.constraint(equalToConstant: 150),
+            noResultsView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            noResultsView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 
@@ -56,6 +65,4 @@ extension CNSearchView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
-
-
 }
