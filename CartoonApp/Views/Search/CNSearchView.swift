@@ -13,10 +13,13 @@ final class CNSearchView: UIView {
 
     // MARK: - Subviews
 
-    // SearchInputView(bar, seleciton buttons)
-    // no results view
 
+    // No results view
     private let noResultsView = CNNoSearchResultsView()
+
+    // SearchInputView(bar, seleciton buttons)
+    private let searchInputView = CNSearchInputVIew()
+
     // results collection view
 
     // MARK: - Init
@@ -34,13 +37,21 @@ final class CNSearchView: UIView {
     }
 
     private func setupViewHierarchy() {
-        addSubviews(noResultsView)
+        addSubviews(noResultsView, searchInputView)
     }
 
     private func setupViewLayout() {
-        translatesAutoresizingMaskIntoConstraints = false
+        searchInputView.translatesAutoresizingMaskIntoConstraints = false
+        noResultsView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
 
+            // Search Input
+            searchInputView.topAnchor.constraint(equalTo: topAnchor),
+            searchInputView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            searchInputView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            searchInputView.heightAnchor.constraint(equalToConstant: 110),
+
+            // No Results
             noResultsView.widthAnchor.constraint(equalToConstant: 150),
             noResultsView.heightAnchor.constraint(equalToConstant: 150),
             noResultsView.centerXAnchor.constraint(equalTo: centerXAnchor),
