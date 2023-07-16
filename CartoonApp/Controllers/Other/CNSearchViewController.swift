@@ -62,6 +62,12 @@ final class CNSearchViewController: UIViewController {
 
         setupViewHierarchy()
         setupViewLayout()
+        searchView.searchInputView.delegate = self
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchView.presentKeyboard()
     }
 
     @objc
@@ -84,4 +90,12 @@ final class CNSearchViewController: UIViewController {
             searchView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+}
+
+extension CNSearchViewController: CNSearchInputViewDelegate {
+    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption: CNSearchInputViewViewModel.DynamicOption) {
+        print("OIEOLCJWONXCOIJCRWOIJCOWIJ")
+    }
+
+
 }

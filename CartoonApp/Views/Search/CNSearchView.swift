@@ -9,7 +9,7 @@ import UIKit
 
 final class CNSearchView: UIView {
 
-    private let viewModel: CNSearchViewViewModel?
+    private let viewModel: CNSearchViewViewModel
 
     // MARK: - Subviews
 
@@ -18,7 +18,7 @@ final class CNSearchView: UIView {
     private let noResultsView = CNNoSearchResultsView()
 
     // SearchInputView(bar, seleciton buttons)
-    private let searchInputView = CNSearchInputVIew()
+    let searchInputView = CNSearchInputView()
 
     // results collection view
 
@@ -30,6 +30,8 @@ final class CNSearchView: UIView {
         backgroundColor = .systemBackground
         setupViewHierarchy()
         setupViewLayout()
+
+        searchInputView.configure(with: CNSearchInputViewViewModel(type: viewModel.config.type))
     }
 
 
@@ -50,7 +52,7 @@ final class CNSearchView: UIView {
             searchInputView.topAnchor.constraint(equalTo: topAnchor),
             searchInputView.leadingAnchor.constraint(equalTo: leadingAnchor),
             searchInputView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            searchInputView.heightAnchor.constraint(equalToConstant: 110),
+            searchInputView.heightAnchor.constraint(equalToConstant: viewModel.config.type == .episode ? 62 : 110),
 
             // No Results
             noResultsView.widthAnchor.constraint(equalToConstant: 150),
@@ -58,6 +60,10 @@ final class CNSearchView: UIView {
             noResultsView.centerXAnchor.constraint(equalTo: centerXAnchor),
             noResultsView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+
+    public func presentKeyboard() {
+        searchInputView.presentKeyboard()
     }
 }
 
