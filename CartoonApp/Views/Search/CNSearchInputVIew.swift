@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CNSearchInputViewDelegate: AnyObject {
-    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption: CNSearchInputViewViewModel.DynamicOption)
+    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption)
 }
 
 class CNSearchInputView: UIView {

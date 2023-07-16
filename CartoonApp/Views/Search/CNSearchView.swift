@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CNSearchViewDelegate: AnyObject {
+    func cnSearchView(_ searchView: CNSearchView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption)
+}
+
 final class CNSearchView: UIView {
+
+    weak var delegate: CNSearchViewDelegate?
 
     private let viewModel: CNSearchViewViewModel
 
@@ -18,7 +24,7 @@ final class CNSearchView: UIView {
     private let noResultsView = CNNoSearchResultsView()
 
     // SearchInputView(bar, seleciton buttons)
-    let searchInputView = CNSearchInputView()
+    private let searchInputView = CNSearchInputView()
 
     // results collection view
 
@@ -32,6 +38,8 @@ final class CNSearchView: UIView {
         setupViewLayout()
 
         searchInputView.configure(with: CNSearchInputViewViewModel(type: viewModel.config.type))
+
+        searchInputView.delegate = self
     }
 
 
@@ -82,5 +90,13 @@ extension CNSearchView: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - CNSearchInputViewDelegate
+
+extension CNSearchView: CNSearchInputViewDelegate {
+    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption) {
+        delegate?.cnSearchView(self, didSelectOption: option)
     }
 }

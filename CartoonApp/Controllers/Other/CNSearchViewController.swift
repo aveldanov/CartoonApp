@@ -62,7 +62,8 @@ final class CNSearchViewController: UIViewController {
 
         setupViewHierarchy()
         setupViewLayout()
-        searchView.searchInputView.delegate = self
+
+        searchView.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -92,10 +93,10 @@ final class CNSearchViewController: UIViewController {
     }
 }
 
-extension CNSearchViewController: CNSearchInputViewDelegate {
-    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption: CNSearchInputViewViewModel.DynamicOption) {
-        print("OIEOLCJWONXCOIJCRWOIJCOWIJ")
+// MARK: - CNSearchViewDelegate
+
+extension CNSearchViewController: CNSearchViewDelegate {
+    func cnSearchView(_ searchView: CNSearchView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption) {
+        print("swlkejchoewijco")
     }
-
-
 }
