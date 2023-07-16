@@ -9,10 +9,17 @@ import UIKit
 
 class CNSearchInputVIew: UIView {
 
+    private let viewModel: CNSearchInputVIewViewModel? {
+        didSet {
+            guard let viewModel = viewModel, viewModel.hasDynamicOptions else {
+                return
+            }
+            let options = viewModel.options
+        }
+    }
+
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Search"
-
         return searchBar
     }()
 
@@ -24,7 +31,6 @@ class CNSearchInputVIew: UIView {
 
         setupViewHierarchy()
         setupViewLayout()
-        
     }
 
     required init?(coder: NSCoder) {
@@ -48,6 +54,6 @@ class CNSearchInputVIew: UIView {
     }
 
     public func configure(with viewModel: CNSearchInputVIewViewModel) {
-
+        searchBar.placeholder = viewModel.searchPlaceholderText
     }
 }

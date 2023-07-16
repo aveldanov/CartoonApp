@@ -32,6 +32,7 @@ final class CNSearchView: UIView {
         setupViewLayout()
     }
 
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
