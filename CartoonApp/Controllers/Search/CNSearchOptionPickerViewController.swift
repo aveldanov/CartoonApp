@@ -79,7 +79,6 @@ extension CNSearchOptionPickerViewController: UITableViewDelegate, UITableViewDa
 
         //Inform caller of choice
         let choice = option.choices[indexPath.row]
-
         self.selectionBlock(choice)
 
         dismiss(animated: true)

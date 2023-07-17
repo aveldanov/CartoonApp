@@ -38,8 +38,15 @@ final class CNSearchView: UIView {
         setupViewLayout()
 
         searchInputView.configure(with: CNSearchInputViewViewModel(type: viewModel.config.type))
-
         searchInputView.delegate = self
+
+   
+        viewModel.registerOptionChangeBlock {tuple in
+            // tuple: option | value
+            print(tuple,"KFJEWHLCH")
+
+            self.searchInputView.update(option: tuple.option, value: tuple.value)
+        }
     }
 
 

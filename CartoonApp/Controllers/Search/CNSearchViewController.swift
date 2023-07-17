@@ -97,8 +97,11 @@ final class CNSearchViewController: UIViewController {
 
 extension CNSearchViewController: CNSearchViewDelegate {
     func cnSearchView(_ searchView: CNSearchView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption) {
-        let viewController = CNSearchOptionPickerViewController(option: option) { selection in
+        let viewController = CNSearchOptionPickerViewController(option: option) { [weak self] selection in
             print("Did select \(selection)")
+            DispatchQueue.main.async {
+                self?.viewModel.set(value: selection, for: option)
+            }
         }
         viewController.sheetPresentationController?.detents = [.medium()]
         viewController.sheetPresentationController?.prefersGrabberVisible = true

@@ -120,4 +120,11 @@ class CNSearchInputView: UIView {
     public func presentKeyboard() {
         searchBar.becomeFirstResponder()
     }
+
+    public func update(option:  CNSearchInputViewViewModel.DynamicOption, value: String) {
+
+        let buttons = stackView.arrangedSubviews
+
+        
+    }
 }
