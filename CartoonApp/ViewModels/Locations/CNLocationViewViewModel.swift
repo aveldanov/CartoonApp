@@ -52,11 +52,11 @@ final class CNLocationViewViewModel {
                 DispatchQueue.main.async {
                     self?.delegate?.didFetchInitialLocations()
                 }
-            case .failure(let error):
+            case .failure:
                 break
             }
         }
-        let request = CNRequest(endpoint: .location)
+//        let request = CNRequest(endpoint: .location)
     }
 
     private var hasMoreResults: Bool {
