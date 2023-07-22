@@ -15,7 +15,7 @@ import Foundation
 final class CNSearchViewViewModel {
 
     let config: CNSearchViewController.Config
-
+    
     var optionMapUpdateBlock: (((option: CNSearchInputViewViewModel.DynamicOption, value: String))->Void)?
 
     private var optionMap: [CNSearchInputViewViewModel.DynamicOption: String] = [:]

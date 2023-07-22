@@ -122,9 +122,14 @@ class CNSearchInputView: UIView {
     }
 
     public func update(option:  CNSearchInputViewViewModel.DynamicOption, value: String) {
+        guard let allOptions = viewModel?.options, let index = allOptions.firstIndex(of: option), let buttons = stackView.arrangedSubviews as? [UIButton] else {
+            return
+        }
 
-        let buttons = stackView.arrangedSubviews
+        let button: UIButton = buttons[index]
 
-        
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 18, weight: .medium), .foregroundColor: UIColor.link]
+
+        button.setAttributedTitle(NSAttributedString(string: value.uppercased()+" \u{2714}", attributes: attributes), for: .normal)
     }
 }
