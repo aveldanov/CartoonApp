@@ -9,8 +9,11 @@ import UIKit
 
 protocol CNSearchInputViewDelegate: AnyObject {
     func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption)
+    func cnSearchInputView(_ inputView: CNSearchInputView, didChangeSearchText text: String?)
+    func cnSearchInputViewDidTapSearchKeyboardButton(_ inputView: CNSearchInputView)
 }
 
+/// The view for top part of the search screen with a search bar
 class CNSearchInputView: UIView {
 
     weak var delegate: CNSearchInputViewDelegate?
@@ -52,6 +55,8 @@ class CNSearchInputView: UIView {
 
         setupViewHierarchy()
         setupViewLayout()
+
+        searchBar.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -131,5 +136,20 @@ class CNSearchInputView: UIView {
         let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 18, weight: .medium), .foregroundColor: UIColor.link]
 
         button.setAttributedTitle(NSAttributedString(string: value.uppercased()+" \u{2714}", attributes: attributes), for: .normal)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension CNSearchInputView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Notify delegate change in text
+        delegate?.cnSearchInputView(self, didChangeSearchText: searchText)
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Notify the search button was tapped
+        searchBar.resignFirstResponder()
+        delegate?.cnSearchInputViewDidTapSearchKeyboardButton(self)
     }
 }

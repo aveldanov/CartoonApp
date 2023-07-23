@@ -32,6 +32,17 @@ final class CNSearchViewController: UIViewController {
                     return "Search Locations"
                 }
             }
+
+            var endpoint: CNEndpoint {
+                switch self {
+                case .character:
+                    return .character
+                case .episode:
+                    return .episode
+                case .location:
+                    return .location
+                }
+            }
         }
         let type: `Type`
     }
@@ -73,8 +84,7 @@ final class CNSearchViewController: UIViewController {
 
     @objc
     private func didTapExecuteSearch() {
-//        viewModel.executeSearch()
-        
+        viewModel.executeSearch()
     }
 
     private func setupViewHierarchy() {

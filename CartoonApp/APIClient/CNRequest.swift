@@ -120,7 +120,6 @@ final class CNRequest {
                 }
             }
         }
-
         return nil
     }
 }

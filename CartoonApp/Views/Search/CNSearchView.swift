@@ -106,4 +106,11 @@ extension CNSearchView: CNSearchInputViewDelegate {
     func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption) {
         delegate?.cnSearchView(self, didSelectOption: option)
     }
+
+    func cnSearchInputView(_ inputView: CNSearchInputView, didChangeSearchText text: String?) {
+    }
+
+    func cnSearchInputViewDidTapSearchKeyboardButton(_ inputView: CNSearchInputView) {
+        viewModel.executeSearch()
+    }
 }
