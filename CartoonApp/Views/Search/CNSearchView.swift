@@ -46,8 +46,8 @@ final class CNSearchView: UIView {
             self.searchInputView.update(option: tuple.option, value: tuple.value)
         }
 
-        viewModel.registerSearchResultHandler {
-            
+        viewModel.registerSearchResultHandler { results in
+            print(results, "YOYOYOYOYO")
         }
     }
 

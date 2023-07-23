@@ -7,13 +7,8 @@
 
 import Foundation
 
-protocol CNSearchResultsRepresentableProtocol {
-    associatedtype ResultType
-    var results: [ResultType] { get }
-}
-
-struct CNSearchResultsViewViewModel<T>: CNSearchResultsRepresentableProtocol {
-    typealias ResultType = T
-    var results: [ResultType]
-
+enum CNSearchResultsViewViewModel {
+    case characters([CNCharacterCollectionViewCellViewModel])
+    case episodes([CNCharacterEpisodeCollectionViewViewModel])
+    case locations([CNLocationTableViewCellViewModel])
 }
