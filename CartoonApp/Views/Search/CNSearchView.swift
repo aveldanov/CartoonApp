@@ -28,6 +28,8 @@ final class CNSearchView: UIView {
 
     // results collection view
 
+    private let resultsView = CNSearchResultView()
+
     // MARK: - Init
 
     init(frame: CGRect, viewModel: CNSearchViewViewModel) {
@@ -57,19 +59,26 @@ final class CNSearchView: UIView {
     }
 
     private func setupViewHierarchy() {
-        addSubviews(noResultsView, searchInputView)
+        addSubviews(noResultsView, searchInputView, resultsView)
     }
 
     private func setupViewLayout() {
         searchInputView.translatesAutoresizingMaskIntoConstraints = false
         noResultsView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
+        resultsView.translatesAutoresizingMaskIntoConstraints = false
 
+        NSLayoutConstraint.activate([
             // Search Input
             searchInputView.topAnchor.constraint(equalTo: topAnchor),
             searchInputView.leadingAnchor.constraint(equalTo: leadingAnchor),
             searchInputView.trailingAnchor.constraint(equalTo: trailingAnchor),
             searchInputView.heightAnchor.constraint(equalToConstant: viewModel.config.type == .episode ? 62 : 110),
+
+            // Results view
+            resultsView.topAnchor.constraint(equalTo: searchInputView.bottomAnchor),
+            resultsView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            resultsView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            resultsView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
             // No Results
             noResultsView.widthAnchor.constraint(equalToConstant: 150),
