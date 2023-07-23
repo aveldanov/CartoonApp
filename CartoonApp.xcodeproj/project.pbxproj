@@ -383,8 +383,8 @@
 			isa = PBXGroup;
 			children = (
 				3477C81A2A626A3500E347A8 /* CNSearchView.swift */,
-				34DF692B2A6CE61000833205 /* CNSearchResultView.swift */,
 				3477C8232A626E4C00E347A8 /* CNSearchInputVIew.swift */,
+				34DF692B2A6CE61000833205 /* CNSearchResultView.swift */,
 				3477C81F2A626DF000E347A8 /* CNNoSearchResultsView.swift */,
 			);
 			path = Search;

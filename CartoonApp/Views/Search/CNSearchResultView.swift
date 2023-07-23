@@ -16,10 +16,20 @@ final class CNSearchResultView: UIView {
         }
     }
 
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.register(CNLocationTableViewCell.self, forCellReuseIdentifier: CNLocationTableViewCell.identifier)
+        table.isHidden = true
+        return table
+    }()
+
+    // MARK: - Init
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         isHidden = true
-        backgroundColor = .red
+        setupViewHierarchy()
+        setupViewLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -27,12 +37,20 @@ final class CNSearchResultView: UIView {
     }
 
     private func setupViewHierarchy() {
-
+        addSubviews(tableView)
     }
 
 
     private func setupViewLayout() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        tableView.backgroundColor = .yellow
     }
 
     private func processViewModel() {
@@ -42,13 +60,21 @@ final class CNSearchResultView: UIView {
 
         switch viewModel {
         case .characters(let viewModels):
-            break
+            setupCollectionView()
         case .locations(let viewModels):
-            break
+            setupTableView()
         case .episodes(let viewModels):
-            break
-        }
+            setupCollectionView()
 
+        }
+    }
+
+    private func setupCollectionView() {
+
+    }
+
+    private func setupTableView() {
+        tableView.isHidden = false
     }
 
     public func configure(with viewModel: CNSearchResultsViewViewModel) {

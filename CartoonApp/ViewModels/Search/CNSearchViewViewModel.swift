@@ -17,6 +17,7 @@ final class CNSearchViewViewModel {
     private var optionMap: [CNSearchInputViewViewModel.DynamicOption: String] = [:]
     private var optionMapUpdateBlock: (((option: CNSearchInputViewViewModel.DynamicOption, value: String))->Void)?
     private var searchResultHandler: ((CNSearchResultsViewViewModel) -> Void)?
+    private var noSearchResultHandler: (() -> Void)?
 
     private var searchText = ""
 
@@ -30,6 +31,10 @@ final class CNSearchViewViewModel {
 
     public func registerSearchResultHandler(_ block: @escaping (CNSearchResultsViewViewModel) -> Void) {
         self.searchResultHandler = block
+    }
+
+    public func registerNoSearchResultHandler(_ block: @escaping () -> Void) {
+        self.noSearchResultHandler = block
     }
 
     public func executeSearch() {
@@ -69,7 +74,7 @@ final class CNSearchViewViewModel {
             case .success(let model):
                 self?.processSearchResults(model: model)
             case .failure:
-                print("Failed to get results")
+                self?.handleNoResults()
                 break
             }
         }
@@ -94,12 +99,18 @@ final class CNSearchViewViewModel {
         }
         if let results = resultsViewModel {
             self.searchResultHandler?(results)
+            print(results)
         } else {
             // Fallback error
+            handleNoResults()
         }
     }
 
-        public func set(query searchText: String) {
+    private func handleNoResults() {
+        noSearchResultHandler?()
+    }
+
+    public func set(query searchText: String) {
         self.searchText = searchText
     }
 

@@ -19,7 +19,6 @@ final class CNSearchView: UIView {
 
     // MARK: - Subviews
 
-
     // No results view
     private let noResultsView = CNNoSearchResultsView()
 
@@ -42,15 +41,7 @@ final class CNSearchView: UIView {
         searchInputView.configure(with: CNSearchInputViewViewModel(type: viewModel.config.type))
         searchInputView.delegate = self
 
-   
-        viewModel.registerOptionChangeBlock {tuple in
-            // tuple: option | value
-            self.searchInputView.update(option: tuple.option, value: tuple.value)
-        }
-
-        viewModel.registerSearchResultHandler { results in
-            print(results, "YOYOYOYOYO")
-        }
+        setupHandlers(viewModel: viewModel)
     }
 
 
@@ -59,7 +50,7 @@ final class CNSearchView: UIView {
     }
 
     private func setupViewHierarchy() {
-        addSubviews(noResultsView, searchInputView, resultsView)
+        addSubviews(resultsView, noResultsView, searchInputView)
     }
 
     private func setupViewLayout() {
@@ -77,7 +68,7 @@ final class CNSearchView: UIView {
             // Results view
             resultsView.topAnchor.constraint(equalTo: searchInputView.bottomAnchor),
             resultsView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            resultsView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            resultsView.trailingAnchor.constraint(equalTo: trailingAnchor),
             resultsView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
             // No Results
@@ -90,6 +81,28 @@ final class CNSearchView: UIView {
 
     public func presentKeyboard() {
         searchInputView.presentKeyboard()
+    }
+
+    private func setupHandlers(viewModel: CNSearchViewViewModel) {
+        viewModel.registerOptionChangeBlock {tuple in
+            // tuple: option | value
+            self.searchInputView.update(option: tuple.option, value: tuple.value)
+        }
+
+        viewModel.registerSearchResultHandler { [weak self] result in
+            DispatchQueue.main.async {
+                self?.resultsView.configure(with: result)
+                self?.noResultsView.isHidden = true
+                self?.resultsView.isHidden = false
+            }
+        }
+
+        viewModel.registerNoSearchResultHandler { [weak self] in
+            DispatchQueue.main.async {
+                self?.noResultsView.isHidden = false
+                self?.resultsView.isHidden = true
+            }
+        }
     }
 }
 
