@@ -7,6 +7,13 @@
 
 import Foundation
 
-struct CNSearchResultsViewViewModel {
-    
+protocol CNSearchResultsRepresentableProtocol {
+    associatedtype ResultType
+    var results: [ResultType] { get }
+}
+
+struct CNSearchResultsViewViewModel<T>: CNSearchResultsRepresentableProtocol {
+    typealias ResultType = T
+    var results: [ResultType]
+
 }

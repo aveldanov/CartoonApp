@@ -77,13 +77,11 @@ final class CNSearchViewViewModel {
 
     private func processSearchResults(model: Codable) {
         if let characterResults = model as? CNGetAllCharactersResponse {
-            print(characterResults.results)
+            let resultsViewModel = CNSearchResultsViewViewModel(results: characterResults.results)
         } else if let episodeResults = model as? CNGetAllEpisodesResponse {
-            print(episodeResults.results)
-
+            let resultsViewModel = CNSearchResultsViewViewModel(results: episodeResults.results)
         } else if let locationResults = model as? CNGetAllLocationsResponse {
-            print(locationResults.results)
-
+            let resultsViewModel = CNSearchResultsViewViewModel(results: locationResults.results)
         } else {
             // Error: No results
         }
