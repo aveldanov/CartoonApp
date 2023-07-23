@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // Responsibilities
 // - show results
 // - show no results view
@@ -36,10 +35,10 @@ final class CNSearchViewViewModel {
     public func executeSearch() {
         // Create request based on filters
         // https://rickandmortyapi.com/api/character/?name=rick&status=alive
-        searchText = "Rick"
 
+        print(searchText)
         // Build arguments
-        var queryParams: [URLQueryItem] = [URLQueryItem(name: "name", value: searchText)]
+        var queryParams: [URLQueryItem] = [URLQueryItem(name: "name", value: searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))]
 
         // Add options
         queryParams.append(contentsOf: optionMap.enumerated().compactMap({ (option, element) in
@@ -52,15 +51,41 @@ final class CNSearchViewViewModel {
         // Create request
         let request = CNRequest(endpoint: config.type.endpoint, queryParams: queryParams)
 
-        print(request.url?.absoluteString, queryParams)
-        CNService.shared.execute(request, expecting: CNGetAllCharactersResponse.self) { result in
+        switch config.type.endpoint {
+        case .character:
+            return makeSearchApiCall(request: request, type: CNGetAllCharactersResponse.self)
+        case .episode:
+            return makeSearchApiCall(request: request, type: CNGetAllEpisodesResponse.self)
+        case .location:
+            return makeSearchApiCall(request: request, type: CNGetAllLocationsResponse.self)
+        }
+    }
+
+
+    private func makeSearchApiCall<T: Codable>(request: CNRequest, type: T.Type) {
+        CNService.shared.execute(request: request, expecting: type) { [weak self] result in
             // Notify of view results, no results or an error
             switch result {
             case .success(let model):
-                print(model.results.count)
+                self?.processSearchResults(model: model)
             case .failure:
+                print("Failed to get results")
                 break
             }
+        }
+    }
+
+    private func processSearchResults(model: Codable) {
+        if let characterResults = model as? CNGetAllCharactersResponse {
+            print(characterResults.results)
+        } else if let episodeResults = model as? CNGetAllEpisodesResponse {
+            print(episodeResults.results)
+
+        } else if let locationResults = model as? CNGetAllLocationsResponse {
+            print(locationResults.results)
+
+        } else {
+            // Error: No results
         }
     }
 

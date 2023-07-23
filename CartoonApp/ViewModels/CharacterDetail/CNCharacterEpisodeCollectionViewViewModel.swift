@@ -55,7 +55,7 @@ final class CNCharacterEpisodeCollectionViewViewModel: Hashable, Equatable {
             return
         }
         isFetchingEpisode = true
-        CNService.shared.execute(request, expecting: CNEpisode.self) { [weak self] result in
+        CNService.shared.execute(request: request, expecting: CNEpisode.self) { [weak self] result in
             switch result {
             case .success(let model):
                 DispatchQueue.main.async {

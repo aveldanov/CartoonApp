@@ -11,5 +11,4 @@ struct CNNoSearchResultsViewViewModel {
 
     let title: String = "No Results"
     let image: UIImage = UIImage(systemName: "magnifyingglass.circle") ?? UIImage()
-    
 }

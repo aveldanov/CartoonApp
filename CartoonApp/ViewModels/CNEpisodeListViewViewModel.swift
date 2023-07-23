@@ -51,7 +51,7 @@ final class CNEpisodeListViewViewModel: NSObject {
 
     /// Fetch initial set of characters
     func fetchEpisodes() {
-        CNService.shared.execute(CNRequest.listEpisodesRequest, expecting: CNGetAllEpisodesResponse.self) { [weak self] result in
+        CNService.shared.execute(request: CNRequest.listEpisodesRequest, expecting: CNGetAllEpisodesResponse.self) { [weak self] result in
             switch result {
             case .success(let resultModel):
                 self?.episodes = resultModel.results
@@ -80,7 +80,7 @@ final class CNEpisodeListViewViewModel: NSObject {
             return
         }
 
-        CNService.shared.execute(request, expecting: CNGetAllEpisodesResponse.self) { [weak self] result in
+        CNService.shared.execute(request: request, expecting: CNGetAllEpisodesResponse.self) { [weak self] result in
             print("[CNEpisodeListViewViewModel] Fetching more episodes")
             guard let strongSelf = self else {
                 return

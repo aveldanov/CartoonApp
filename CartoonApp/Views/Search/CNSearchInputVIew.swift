@@ -9,7 +9,7 @@ import UIKit
 
 protocol CNSearchInputViewDelegate: AnyObject {
     func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption)
-    func cnSearchInputView(_ inputView: CNSearchInputView, didChangeSearchText text: String?)
+    func cnSearchInputView(_ inputView: CNSearchInputView, didChangeSearchText text: String)
     func cnSearchInputViewDidTapSearchKeyboardButton(_ inputView: CNSearchInputView)
 }
 
@@ -143,7 +143,7 @@ class CNSearchInputView: UIView {
 
 extension CNSearchInputView: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Notify delegate change in text
+        // Notify delegate of change in text
         delegate?.cnSearchInputView(self, didChangeSearchText: searchText)
     }
 

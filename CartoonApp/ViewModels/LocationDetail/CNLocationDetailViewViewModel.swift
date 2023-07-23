@@ -44,7 +44,7 @@ final class CNLocationDetailViewViewModel {
             return
         }
 
-        CNService.shared.execute(request, expecting: CNLocation.self) { [weak self] request in
+        CNService.shared.execute(request: request, expecting: CNLocation.self) { [weak self] request in
             switch request {
             case .success(let model):
                 self?.fetchRelatedCharacters(location: model)
@@ -78,7 +78,7 @@ final class CNLocationDetailViewViewModel {
 
         for request in requests {
             group.enter() // increment by 1
-            CNService.shared.execute(request, expecting: CNCharacter.self) { result in
+            CNService.shared.execute(request: request, expecting: CNCharacter.self) { result in
                 defer {
                     group.leave() // decrement by 1, once gets to 0 notifies
                 }

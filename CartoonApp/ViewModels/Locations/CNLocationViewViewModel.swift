@@ -44,7 +44,7 @@ final class CNLocationViewViewModel {
     }
 
     public func fetchLocations() {
-        CNService.shared.execute(.listLocationsRequest, expecting: CNGetAllLocationsResponse.self) { [weak self] result in
+        CNService.shared.execute(request: .listLocationsRequest, expecting: CNGetAllLocationsResponse.self) { [weak self] result in
             switch result {
             case .success(let model):
                 self?.apiInfo = model.info

@@ -43,9 +43,11 @@ final class CNSearchView: UIView {
    
         viewModel.registerOptionChangeBlock {tuple in
             // tuple: option | value
-            print(tuple,"KFJEWHLCH")
-
             self.searchInputView.update(option: tuple.option, value: tuple.value)
+        }
+
+        viewModel.registerSearchResultHandler {
+            
         }
     }
 
@@ -107,7 +109,8 @@ extension CNSearchView: CNSearchInputViewDelegate {
         delegate?.cnSearchView(self, didSelectOption: option)
     }
 
-    func cnSearchInputView(_ inputView: CNSearchInputView, didChangeSearchText text: String?) {
+    func cnSearchInputView(_ inputView: CNSearchInputView, didChangeSearchText text: String) {
+        viewModel.set(query: text)
     }
 
     func cnSearchInputViewDidTapSearchKeyboardButton(_ inputView: CNSearchInputView) {

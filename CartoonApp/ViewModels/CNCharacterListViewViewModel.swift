@@ -41,7 +41,7 @@ final class CNCharacterListViewViewModel: NSObject {
 
     /// Fetch initial set of characters
     func fetchCharacters() {
-        CNService.shared.execute(CNRequest.listCharactersRequest, expecting: CNGetAllCharactersResponse.self) { [weak self] result in
+        CNService.shared.execute(request: CNRequest.listCharactersRequest, expecting: CNGetAllCharactersResponse.self) { [weak self] result in
             switch result {
             case .success(let resultModel):
                 self?.characters = resultModel.results
@@ -70,7 +70,7 @@ final class CNCharacterListViewViewModel: NSObject {
             return
         }
 
-        CNService.shared.execute(request, expecting: CNGetAllCharactersResponse.self) { [weak self] result in
+        CNService.shared.execute(request: request, expecting: CNGetAllCharactersResponse.self) { [weak self] result in
             print("[CNCharacterListViewViewModel] Fetching more characters")
             guard let strongSelf = self else {
                 return
