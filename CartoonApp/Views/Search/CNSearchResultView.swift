@@ -10,6 +10,8 @@ import UIKit
 /// Shows search results UI(table or collection as needed)
 final class CNSearchResultView: UIView {
 
+    var locationCellViewModels: [CNLocationTableViewCellViewModel] = []
+
     private var viewModel: CNSearchResultsViewViewModel? {
         didSet {
             self.processViewModel()
@@ -28,6 +30,10 @@ final class CNSearchResultView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         isHidden = true
+
+        tableView.delegate = self
+        tableView.dataSource = self
+
         setupViewHierarchy()
         setupViewLayout()
     }
@@ -62,7 +68,7 @@ final class CNSearchResultView: UIView {
         case .characters(let viewModels):
             setupCollectionView()
         case .locations(let viewModels):
-            setupTableView()
+            setupTableView(viewModels: viewModels)
         case .episodes(let viewModels):
             setupCollectionView()
 
@@ -73,11 +79,34 @@ final class CNSearchResultView: UIView {
 
     }
 
-    private func setupTableView() {
+    private func setupTableView(viewModels: [CNLocationTableViewCellViewModel]) {
+
+        self.locationCellViewModels = viewModels
+
         tableView.isHidden = false
+        tableView.reloadData()
     }
 
     public func configure(with viewModel: CNSearchResultsViewViewModel) {
         self.viewModel = viewModel
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension CNSearchResultView:  UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locationCellViewModels.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CNLocationTableViewCell.identifier, for: indexPath) as? CNLocationTableViewCell else {
+            fatalError()
+        }
+
+        let cellViewModel = locationCellViewModels[indexPath.row]
+        cell.configure(with: cellViewModel)
+
+        return cell
     }
 }
