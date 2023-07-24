@@ -9,6 +9,8 @@ import UIKit
 
 protocol CNSearchViewDelegate: AnyObject {
     func cnSearchView(_ searchView: CNSearchView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption)
+    func cnSearchView(_ searchView: CNSearchView, didSelectLocation location: CNLocation)
+
 }
 
 final class CNSearchView: UIView {
@@ -42,6 +44,8 @@ final class CNSearchView: UIView {
         searchInputView.delegate = self
 
         setupHandlers(viewModel: viewModel)
+
+        resultsView.delegate = self
     }
 
 
@@ -137,5 +141,18 @@ extension CNSearchView: CNSearchInputViewDelegate {
 
     func cnSearchInputViewDidTapSearchKeyboardButton(_ inputView: CNSearchInputView) {
         viewModel.executeSearch()
+    }
+}
+
+// MARK: - CNSearchResultViewDelegate
+
+extension CNSearchView: CNSearchResultViewDelegate {
+    func cnSearchRestulView(resultView: CNSearchResultView, didTapLocationAt index: Int) {
+        print("[CNSearchResultViewDelegate] Yaya \(index)")
+        guard let locationModel = viewModel.locationSearchResult(at: index) else {
+            return
+        }
+        
+        delegate?.cnSearchView(self, didSelectLocation: locationModel)
     }
 }

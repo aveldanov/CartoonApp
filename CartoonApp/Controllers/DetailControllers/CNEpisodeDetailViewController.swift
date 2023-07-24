@@ -30,6 +30,7 @@ final class CNEpisodeDetailViewController: UIViewController {
 
         setupViewHierarchy()
         setupViewLayout()
+        view.backgroundColor = .systemBackground
         episodeDetailView.delegate = self
         viewModel.delegate = self
         viewModel.fetchEpisodeData()

@@ -117,4 +117,10 @@ extension CNSearchViewController: CNSearchViewDelegate {
         viewController.sheetPresentationController?.prefersGrabberVisible = true
         present(viewController, animated: true)
     }
+
+    func cnSearchView(_ searchView: CNSearchView, didSelectLocation location: CNLocation) {
+        let viewController = CNLocationDetailViewController(location: location)
+        viewController.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }

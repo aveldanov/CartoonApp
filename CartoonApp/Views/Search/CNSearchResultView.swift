@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol CNSearchResultViewDelegate: AnyObject {
+    func cnSearchRestulView(resultView: CNSearchResultView, didTapLocationAt index: Int)
+}
+
 /// Shows search results UI(table or collection as needed)
 final class CNSearchResultView: UIView {
 
     var locationCellViewModels: [CNLocationTableViewCellViewModel] = []
+
+    weak var delegate: CNSearchResultViewDelegate?
 
     private var viewModel: CNSearchResultsViewViewModel? {
         didSet {
@@ -56,7 +62,6 @@ final class CNSearchResultView: UIView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        tableView.backgroundColor = .yellow
     }
 
     private func processViewModel() {
@@ -110,5 +115,6 @@ extension CNSearchResultView:  UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.cnSearchRestulView(resultView: self, didTapLocationAt: indexPath.row)
     }
 }

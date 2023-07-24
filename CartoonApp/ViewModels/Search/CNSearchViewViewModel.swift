@@ -18,7 +18,7 @@ final class CNSearchViewViewModel {
     private var optionMapUpdateBlock: (((option: CNSearchInputViewViewModel.DynamicOption, value: String))->Void)?
     private var searchResultHandler: ((CNSearchResultsViewViewModel) -> Void)?
     private var noSearchResultHandler: (() -> Void)?
-
+    private var searchResultModel: Codable?
     private var searchText = ""
 
     // MARK: - Init
@@ -98,6 +98,7 @@ final class CNSearchViewViewModel {
             }))
         }
         if let results = resultsViewModel {
+            self.searchResultModel = model
             self.searchResultHandler?(results)
             print(results)
         } else {
@@ -122,5 +123,13 @@ final class CNSearchViewViewModel {
 
     public func registerOptionChangeBlock(_ block: @escaping ((option: CNSearchInputViewViewModel.DynamicOption, value: String))->Void) {
         self.optionMapUpdateBlock = block
+    }
+
+    public func locationSearchResult(at index: Int) -> CNLocation? {
+        guard let searchModel = searchResultModel as? CNGetAllLocationsResponse else {
+            return nil
+        }
+        
+        return searchModel.results[index]
     }
 }

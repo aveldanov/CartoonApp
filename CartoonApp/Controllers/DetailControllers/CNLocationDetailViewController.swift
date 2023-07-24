@@ -28,7 +28,7 @@ final class CNLocationDetailViewController: UIViewController {
         super.viewDidLoad()
         title = "Location"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
-
+        view.backgroundColor = .systemBackground
         setupViewHierarchy()
         setupViewLayout()
         locationDetailView.delegate = self
