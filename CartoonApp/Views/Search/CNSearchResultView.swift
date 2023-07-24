@@ -80,9 +80,7 @@ final class CNSearchResultView: UIView {
     }
 
     private func setupTableView(viewModels: [CNLocationTableViewCellViewModel]) {
-
         self.locationCellViewModels = viewModels
-
         tableView.isHidden = false
         tableView.reloadData()
     }
@@ -101,12 +99,16 @@ extension CNSearchResultView:  UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CNLocationTableViewCell.identifier, for: indexPath) as? CNLocationTableViewCell else {
-            fatalError()
+            fatalError("Failed to dequeue CNLocationTableViewCell")
         }
 
         let cellViewModel = locationCellViewModels[indexPath.row]
         cell.configure(with: cellViewModel)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
