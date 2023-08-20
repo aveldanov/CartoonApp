@@ -15,6 +15,8 @@ protocol CNSearchResultViewDelegate: AnyObject {
 final class CNSearchResultView: UIView {
 
     var locationCellViewModels: [CNLocationTableViewCellViewModel] = []
+    var collectionViewCellViewModels: [any Hashable] = []
+
 
     weak var delegate: CNSearchResultViewDelegate?
 
@@ -37,7 +39,9 @@ final class CNSearchResultView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
+
         collectionView.register(CNCharacterCollectionViewCell.self, forCellWithReuseIdentifier: CNCharacterCollectionViewCell.identifier)
+
         collectionView.register(CNCharacterEpisodeCollectionViewCell.self, forCellWithReuseIdentifier: CNCharacterEpisodeCollectionViewCell.identifier)
 
         collectionView.register(CNFooterLoadingCollectionReusableView.self,
@@ -54,6 +58,8 @@ final class CNSearchResultView: UIView {
 
         tableView.delegate = self
         tableView.dataSource = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
 
         setupViewHierarchy()
         setupViewLayout()
@@ -64,18 +70,23 @@ final class CNSearchResultView: UIView {
     }
 
     private func setupViewHierarchy() {
-        addSubviews(tableView)
+        addSubviews(tableView, collectionView)
     }
-
 
     private func setupViewLayout() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 
@@ -86,22 +97,29 @@ final class CNSearchResultView: UIView {
 
         switch viewModel {
         case .characters(let viewModels):
+            self.collectionViewCellViewModels = viewModels
             setupCollectionView()
         case .locations(let viewModels):
             setupTableView(viewModels: viewModels)
         case .episodes(let viewModels):
+            self.collectionViewCellViewModels = viewModels
             setupCollectionView()
-
         }
     }
 
     private func setupCollectionView() {
 
+        self.tableView.isHidden = true
+        self.collectionView.isHidden = false
+
+        collectionView.backgroundColor = .red
+        collectionView.reloadData()
     }
 
     private func setupTableView(viewModels: [CNLocationTableViewCellViewModel]) {
         self.locationCellViewModels = viewModels
         tableView.isHidden = false
+        collectionView.isHidden = true
         tableView.reloadData()
     }
 
@@ -131,5 +149,59 @@ extension CNSearchResultView:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.cnSearchRestulView(resultView: self, didTapLocationAt: indexPath.row)
+    }
+}
+
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+
+extension CNSearchResultView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionViewCellViewModels.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        // Character | Episode
+
+        let currentViewModel = collectionViewCellViewModels[indexPath.row]
+        if let characterViewModel = currentViewModel as? CNCharacterCollectionViewCellViewModel {
+            // Character cell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CNCharacterCollectionViewCell.identifier, for: indexPath) as? CNCharacterCollectionViewCell else {
+                fatalError()
+            }
+            print("VM: ",characterViewModel.characterName)
+            cell.configure(with: characterViewModel)
+            return cell
+        }
+        // Episode cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CNCharacterEpisodeCollectionViewCell.identifier, for: indexPath) as? CNCharacterEpisodeCollectionViewCell else {
+            fatalError()
+        }
+
+        if let episodeViewModel = currentViewModel as? CNCharacterEpisodeCollectionViewViewModel {
+            cell.configure(with: episodeViewModel)
+        }
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+
+        // Handle cell tap
+
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let currentViewModel = collectionViewCellViewModels[indexPath.row]
+
+        if currentViewModel is CNCharacterEpisodeCollectionViewViewModel {
+            // Character size
+        }
+
+        // Episode size
+        
+        return CGSize(width: 100, height: 100)
     }
 }
