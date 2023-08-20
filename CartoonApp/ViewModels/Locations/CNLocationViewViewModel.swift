@@ -107,7 +107,7 @@ final class CNLocationViewViewModel {
                 let moreResults = resultModel.results
                 strongSelf.apiInfo = resultModel.info
 
-                print("MORE LOCATIONS", moreResults.count)
+                print("MORE LOCATIONS", strongSelf.apiInfo?.next)
 
                 strongSelf.cellViewModels.append(contentsOf: moreResults.compactMap({
                     return CNLocationTableViewCellViewModel(location: $0)

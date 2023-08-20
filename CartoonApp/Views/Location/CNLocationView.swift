@@ -23,6 +23,16 @@ final class CNLocationView: UIView {
             UIView.animate(withDuration: 0.3) {
                 self.tableView.alpha = 1
             }
+
+            viewModel?.registerDidFinishPaginationBlock { [weak self] in
+                DispatchQueue.main.async {
+                    // Loading indicator is off
+                    self?.tableView.tableFooterView = nil
+
+                    // Reload data
+                    self?.tableView.reloadData()
+                }
+            }
         }
     }
 
@@ -48,15 +58,6 @@ final class CNLocationView: UIView {
         setupViewLayout()
         configureTable()
 
-        viewModel?.registerDidFinishPaginationBlock { [weak self] in
-            DispatchQueue.main.async {
-                // Loading indicator is off
-                self?.tableView.tableFooterView = nil
-
-                // Reload data
-                self?.tableView.reloadData()
-            }
-        }
     }
 
     required init?(coder: NSCoder) {
@@ -150,12 +151,6 @@ extension CNLocationView: UIScrollViewDelegate {
                     self?.showLoadingInidcator()
                 }
                 viewModel.fetchAdditionalLocations()
-
-                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
-                    print("[CNLocationView] Refrashing Table Rows")
-                    self?.tableView.reloadData()
-
-                })
             }
             timer.invalidate()
         }
