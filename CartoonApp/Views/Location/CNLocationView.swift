@@ -47,6 +47,16 @@ final class CNLocationView: UIView {
         setupViewHierarchy()
         setupViewLayout()
         configureTable()
+
+        viewModel?.registerDidFinishPaginationBlock { [weak self] in
+            DispatchQueue.main.async {
+                // Loading indicator is off
+                self?.tableView.tableFooterView = nil
+
+                // Reload data
+                self?.tableView.reloadData()
+            }
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -119,3 +129,41 @@ extension CNLocationView: UITableViewDataSource {
         return cell
     }
 }
+
+extension CNLocationView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        guard let viewModel = viewModel,
+                !viewModel.cellViewModels.isEmpty,
+                viewModel.shouldShowMoreIndicator,
+              !viewModel.isLoadingMoreLocations else {
+            return
+        }
+
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScrollViewFixedHeight = scrollView.frame.size.height
+
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+                DispatchQueue.main.async {
+                    self?.showLoadingInidcator()
+                }
+                viewModel.fetchAdditionalLocations()
+
+                DispatchQueue.main.asyncAfter(deadline: .now()+3, execute: {
+                    print("[CNLocationView] Refrashing Table Rows")
+                    self?.tableView.reloadData()
+
+                })
+            }
+            timer.invalidate()
+        }
+    }
+
+    private func showLoadingInidcator() {
+        let footer = CNTableLoadingFooterView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 100))
+        tableView.tableFooterView = footer
+    }
+}
+
