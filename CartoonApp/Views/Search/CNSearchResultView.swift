@@ -112,7 +112,6 @@ final class CNSearchResultView: UIView {
         self.tableView.isHidden = true
         self.collectionView.isHidden = false
 
-        collectionView.backgroundColor = .red
         collectionView.reloadData()
     }
 
