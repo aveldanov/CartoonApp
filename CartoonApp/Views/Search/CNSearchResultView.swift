@@ -196,12 +196,18 @@ extension CNSearchResultView: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let currentViewModel = collectionViewCellViewModels[indexPath.row]
 
-        if currentViewModel is CNCharacterEpisodeCollectionViewViewModel {
+        let bounds = collectionView.bounds
+
+        if currentViewModel is CNCharacterCollectionViewCellViewModel {
             // Character size
+
+            let width = (bounds.width - 30) / 2
+            let height = width * 1.5
+            return CGSize(width: width, height: height)
         }
 
         // Episode size
         
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: bounds.width - 20, height: 100)
     }
 }
