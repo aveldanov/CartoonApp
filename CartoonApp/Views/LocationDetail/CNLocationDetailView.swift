@@ -15,7 +15,7 @@ final class CNLocationDetailView: UIView {
 
     weak var delegate: CNLocationDetailViewDelegate?
 
-    private var viewModel: CNLocationDetailViewViewModel? {
+    private var viewModel: CNLocationDetailViewModel? {
         didSet {
             spinner.stopAnimating()
             self.collectionView?.reloadData()
@@ -102,7 +102,7 @@ final class CNLocationDetailView: UIView {
 
     // MARK: - Public methods
 
-    public func configure(with viewModel: CNLocationDetailViewViewModel) {
+    public func configure(with viewModel: CNLocationDetailViewModel) {
         self.viewModel = viewModel
     }
 }

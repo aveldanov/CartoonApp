@@ -9,7 +9,7 @@ import UIKit
 
 final class CNSearchOptionPickerViewController: UIViewController {
 
-    private let option: CNSearchInputViewViewModel.DynamicOption
+    private let option: CNSearchInputViewModel.DynamicOption
     private let selectionBlock: ((String) -> Void)
 
     private let tabelView: UITableView = {
@@ -20,7 +20,7 @@ final class CNSearchOptionPickerViewController: UIViewController {
 
     // MARK: - Init
 
-    init(option: CNSearchInputViewViewModel.DynamicOption, selectionBlock: @escaping (String) -> Void) {
+    init(option: CNSearchInputViewModel.DynamicOption, selectionBlock: @escaping (String) -> Void) {
         self.selectionBlock = selectionBlock
         self.option = option
         super.init(nibName: nil, bundle: nil)

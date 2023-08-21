@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol CNLocationViewViewModelDelegate: AnyObject {
+protocol CNLocationViewModelDelegate: AnyObject {
     func didFetchInitialLocations()
 }
 
-final class CNLocationViewViewModel {
+final class CNLocationViewModel {
 
-    weak var delegate: CNLocationViewViewModelDelegate?
+    weak var delegate: CNLocationViewModelDelegate?
 
     private var locations: [CNLocation] = [] {
         didSet {

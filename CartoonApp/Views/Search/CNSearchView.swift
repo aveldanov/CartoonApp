@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CNSearchViewDelegate: AnyObject {
-    func cnSearchView(_ searchView: CNSearchView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption)
+    func cnSearchView(_ searchView: CNSearchView, didSelectOption option: CNSearchInputViewModel.DynamicOption)
     func cnSearchView(_ searchView: CNSearchView, didSelectLocation location: CNLocation)
 
 }
@@ -17,7 +17,7 @@ final class CNSearchView: UIView {
 
     weak var delegate: CNSearchViewDelegate?
 
-    private let viewModel: CNSearchViewViewModel
+    private let viewModel: CNSearchViewModel
 
     // MARK: - Subviews
 
@@ -33,14 +33,14 @@ final class CNSearchView: UIView {
 
     // MARK: - Init
 
-    init(frame: CGRect, viewModel: CNSearchViewViewModel) {
+    init(frame: CGRect, viewModel: CNSearchViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
         backgroundColor = .systemBackground
         setupViewHierarchy()
         setupViewLayout()
 
-        searchInputView.configure(with: CNSearchInputViewViewModel(type: viewModel.config.type))
+        searchInputView.configure(with: CNSearchInputViewModel(type: viewModel.config.type))
         searchInputView.delegate = self
 
         setupHandlers(viewModel: viewModel)
@@ -87,7 +87,7 @@ final class CNSearchView: UIView {
         searchInputView.presentKeyboard()
     }
 
-    private func setupHandlers(viewModel: CNSearchViewViewModel) {
+    private func setupHandlers(viewModel: CNSearchViewModel) {
         viewModel.registerOptionChangeBlock {tuple in
             // tuple: option | value
             self.searchInputView.update(option: tuple.option, value: tuple.value)
@@ -131,7 +131,7 @@ extension CNSearchView: UICollectionViewDelegate, UICollectionViewDataSource {
 // MARK: - CNSearchInputViewDelegate
 
 extension CNSearchView: CNSearchInputViewDelegate {
-    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption) {
+    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewModel.DynamicOption) {
         delegate?.cnSearchView(self, didSelectOption: option)
     }
 

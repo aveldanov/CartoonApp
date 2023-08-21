@@ -48,12 +48,12 @@ final class CNSearchViewController: UIViewController {
     }
 
     private let searchView: CNSearchView
-    private let viewModel: CNSearchViewViewModel
+    private let viewModel: CNSearchViewModel
 
     // MARK: - Init
 
     init(config: Config) {
-        let viewModel = CNSearchViewViewModel(config: config)
+        let viewModel = CNSearchViewModel(config: config)
         self.viewModel = viewModel
         self.searchView = CNSearchView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
@@ -106,7 +106,7 @@ final class CNSearchViewController: UIViewController {
 // MARK: - CNSearchViewDelegate
 
 extension CNSearchViewController: CNSearchViewDelegate {
-    func cnSearchView(_ searchView: CNSearchView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption) {
+    func cnSearchView(_ searchView: CNSearchView, didSelectOption option: CNSearchInputViewModel.DynamicOption) {
         let viewController = CNSearchOptionPickerViewController(option: option) { [weak self] selection in
             print("Did select \(selection)")
             DispatchQueue.main.async {

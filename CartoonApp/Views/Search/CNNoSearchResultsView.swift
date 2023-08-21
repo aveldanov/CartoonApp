@@ -9,7 +9,7 @@ import UIKit
 
 final class CNNoSearchResultsView: UIView {
 
-    private let viewModel = CNNoSearchResultsViewViewModel()
+    private let viewModel = CNNoSearchResultsViewModel()
 
     private let iconView: UIImageView = {
         let imageView = UIImageView()

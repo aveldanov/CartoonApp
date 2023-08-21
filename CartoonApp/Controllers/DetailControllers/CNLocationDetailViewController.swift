@@ -10,13 +10,13 @@ import UIKit
 /// View Controller to show detail about a single location
 final class CNLocationDetailViewController: UIViewController {
 
-    private let viewModel: CNLocationDetailViewViewModel
+    private let viewModel: CNLocationDetailViewModel
 
     private let locationDetailView = CNLocationDetailView()
 
     init(location: CNLocation) {
         let url = URL(string: location.url)
-        self.viewModel = CNLocationDetailViewViewModel(endpointUrl: url)
+        self.viewModel = CNLocationDetailViewModel(endpointUrl: url)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -60,7 +60,7 @@ final class CNLocationDetailViewController: UIViewController {
 
 // MARK: - Delegates
 
-extension CNLocationDetailViewController: CNLocationDetailViewViewModelDelegate {
+extension CNLocationDetailViewController: CNLocationDetailViewModelDelegate {
     func didFetchLocationDetail() {
         locationDetailView.configure(with: viewModel )
     }

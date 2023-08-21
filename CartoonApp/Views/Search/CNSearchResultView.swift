@@ -20,7 +20,7 @@ final class CNSearchResultView: UIView {
 
     weak var delegate: CNSearchResultViewDelegate?
 
-    private var viewModel: CNSearchResultsViewViewModel? {
+    private var viewModel: CNSearchResultsType? {
         didSet {
             self.processViewModel()
         }
@@ -122,7 +122,7 @@ final class CNSearchResultView: UIView {
         tableView.reloadData()
     }
 
-    public func configure(with viewModel: CNSearchResultsViewViewModel) {
+    public func configure(with viewModel: CNSearchResultsType) {
         self.viewModel = viewModel
     }
 }
@@ -210,3 +210,36 @@ extension CNSearchResultView: UICollectionViewDelegate, UICollectionViewDataSour
         return CGSize(width: bounds.width - 20, height: 100)
     }
 }
+
+extension CNSearchResultView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let viewModel = viewModel else {
+            return
+        }
+//              !viewModel.cellViewModels.isEmpty,
+//              viewModel.shouldShowMoreIndicator,
+//              !viewModel.isLoadingMoreLocations else {
+//            return
+//        }
+//
+//        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
+//            let offset = scrollView.contentOffset.y
+//            let totalContentHeight = scrollView.contentSize.height
+//            let totalScrollViewFixedHeight = scrollView.frame.size.height
+//
+//            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+//                DispatchQueue.main.async {
+//                    self?.showLoadingInidcator()
+//                }
+//                viewModel.fetchAdditionalLocations()
+//            }
+//            timer.invalidate()
+//        }
+    }
+
+    private func showLoadingInidcator() {
+        let footer = CNTableLoadingFooterView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 100))
+        tableView.tableFooterView = footer
+    }
+}
+

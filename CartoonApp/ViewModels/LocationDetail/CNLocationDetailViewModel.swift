@@ -8,11 +8,11 @@
 import UIKit
 
 
-protocol CNLocationDetailViewViewModelDelegate: AnyObject {
+protocol CNLocationDetailViewModelDelegate: AnyObject {
     func didFetchLocationDetail()
 }
 
-final class CNLocationDetailViewViewModel {
+final class CNLocationDetailViewModel {
 
     private let endpointUrl: URL?
     private var dataTuple: (location: CNLocation, characters: [CNCharacter])?{
@@ -22,7 +22,7 @@ final class CNLocationDetailViewViewModel {
         }
     }
 
-    public weak var delegate: CNLocationDetailViewViewModelDelegate?
+    public weak var delegate: CNLocationDetailViewModelDelegate?
     public private(set) var cellViewModels: [SectionType] = []
 
     enum SectionType {

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CNSearchInputViewDelegate: AnyObject {
-    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewViewModel.DynamicOption)
+    func cnSearchInputView(_ inputView: CNSearchInputView, didSelectOption option: CNSearchInputViewModel.DynamicOption)
     func cnSearchInputView(_ inputView: CNSearchInputView, didChangeSearchText text: String)
     func cnSearchInputViewDidTapSearchKeyboardButton(_ inputView: CNSearchInputView)
 }
@@ -18,7 +18,7 @@ class CNSearchInputView: UIView {
 
     weak var delegate: CNSearchInputViewDelegate?
 
-    private var viewModel: CNSearchInputViewViewModel? {
+    private var viewModel: CNSearchInputViewModel? {
         didSet {
             guard let viewModel = viewModel, viewModel.hasDynamicOptions else {
                 return
@@ -84,7 +84,7 @@ class CNSearchInputView: UIView {
         ])
     }
 
-    private func createOptionSelectionViews(options: [CNSearchInputViewViewModel.DynamicOption]) {
+    private func createOptionSelectionViews(options: [CNSearchInputViewModel.DynamicOption]) {
 
         for i in 0..<options.count {
             let option = options[i]
@@ -93,7 +93,7 @@ class CNSearchInputView: UIView {
         }
     }
 
-    private func createButton(with option: CNSearchInputViewViewModel.DynamicOption, tag: Int) -> UIButton {
+    private func createButton(with option: CNSearchInputViewModel.DynamicOption, tag: Int) -> UIButton {
         let button = UIButton()
         let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 18, weight: .medium), .foregroundColor: UIColor.label]
         button.backgroundColor = .secondarySystemFill
@@ -116,7 +116,7 @@ class CNSearchInputView: UIView {
         delegate?.cnSearchInputView(self, didSelectOption: selectedOption)
     }
 
-    public func configure(with viewModel: CNSearchInputViewViewModel) {
+    public func configure(with viewModel: CNSearchInputViewModel) {
         searchBar.placeholder = viewModel.searchPlaceholderText
         // TODO: make zero heigth when no button options
         self.viewModel = viewModel
@@ -126,7 +126,7 @@ class CNSearchInputView: UIView {
         searchBar.becomeFirstResponder()
     }
 
-    public func update(option:  CNSearchInputViewViewModel.DynamicOption, value: String) {
+    public func update(option:  CNSearchInputViewModel.DynamicOption, value: String) {
         guard let allOptions = viewModel?.options, let index = allOptions.firstIndex(of: option), let buttons = stackView.arrangedSubviews as? [UIButton] else {
             return
         }

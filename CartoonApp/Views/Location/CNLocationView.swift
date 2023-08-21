@@ -15,7 +15,7 @@ final class CNLocationView: UIView {
 
     public weak var delegate: CNLocationViewDelegate?
 
-    private var viewModel: CNLocationViewViewModel? {
+    private var viewModel: CNLocationViewModel? {
         didSet {
             spinner.stopAnimating()
             tableView.isHidden = false
@@ -93,7 +93,7 @@ final class CNLocationView: UIView {
 
     // MARK: - Private Methods
 
-    public func configure(with viewModel: CNLocationViewViewModel) {
+    public func configure(with viewModel: CNLocationViewModel) {
         self.viewModel = viewModel
     }
 }

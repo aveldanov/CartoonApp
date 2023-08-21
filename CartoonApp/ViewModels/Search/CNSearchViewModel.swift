@@ -11,12 +11,12 @@ import Foundation
 // - show results
 // - show no results view
 // - kick off
-final class CNSearchViewViewModel {
+final class CNSearchViewModel {
 
     let config: CNSearchViewController.Config
-    private var optionMap: [CNSearchInputViewViewModel.DynamicOption: String] = [:]
-    private var optionMapUpdateBlock: (((option: CNSearchInputViewViewModel.DynamicOption, value: String))->Void)?
-    private var searchResultHandler: ((CNSearchResultsViewViewModel) -> Void)?
+    private var optionMap: [CNSearchInputViewModel.DynamicOption: String] = [:]
+    private var optionMapUpdateBlock: (((option: CNSearchInputViewModel.DynamicOption, value: String))->Void)?
+    private var searchResultHandler: ((CNSearchResultsType) -> Void)?
     private var noSearchResultHandler: (() -> Void)?
     private var searchResultModel: Codable?
     private var searchText = ""
@@ -29,7 +29,7 @@ final class CNSearchViewViewModel {
 
     // MARK: - Public
 
-    public func registerSearchResultHandler(_ block: @escaping (CNSearchResultsViewViewModel) -> Void) {
+    public func registerSearchResultHandler(_ block: @escaping (CNSearchResultsType) -> Void) {
         self.searchResultHandler = block
     }
 
@@ -52,7 +52,7 @@ final class CNSearchViewViewModel {
 
         // Add options
         queryParams.append(contentsOf: optionMap.enumerated().compactMap({ (option, element) in
-            let key: CNSearchInputViewViewModel.DynamicOption = element.key
+            let key: CNSearchInputViewModel.DynamicOption = element.key
             let value: String = element.value
             return URLQueryItem(name: key.queryArgument, value: value)
         }))
@@ -86,7 +86,7 @@ final class CNSearchViewViewModel {
     }
 
     private func processSearchResults(model: Codable) {
-        var resultsViewModel: CNSearchResultsViewViewModel?
+        var resultsViewModel: CNSearchResultsType?
 
         if let characterResults = model as? CNGetAllCharactersResponse {
             resultsViewModel = .characters(characterResults.results.compactMap({
@@ -120,13 +120,13 @@ final class CNSearchViewViewModel {
         self.searchText = searchText
     }
 
-    public func set(value: String, for option: CNSearchInputViewViewModel.DynamicOption) {
+    public func set(value: String, for option: CNSearchInputViewModel.DynamicOption) {
         optionMap[option] = value
         let tuple = (option, value)
         optionMapUpdateBlock?(tuple)
     }
 
-    public func registerOptionChangeBlock(_ block: @escaping ((option: CNSearchInputViewViewModel.DynamicOption, value: String))->Void) {
+    public func registerOptionChangeBlock(_ block: @escaping ((option: CNSearchInputViewModel.DynamicOption, value: String))->Void) {
         self.optionMapUpdateBlock = block
     }
 

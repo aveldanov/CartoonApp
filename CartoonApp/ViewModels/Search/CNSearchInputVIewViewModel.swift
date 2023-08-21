@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class CNSearchInputViewViewModel{
+final class CNSearchInputViewModel{
 
     private let type: CNSearchViewController.Config.`Type`
 

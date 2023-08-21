@@ -11,7 +11,7 @@ final class CNLocationsViewController: UIViewController {
 
     private let primaryView = CNLocationView()
 
-    private let viewModel = CNLocationViewViewModel()
+    private let viewModel = CNLocationViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ final class CNLocationsViewController: UIViewController {
 
 // MARK: - CNLocationViewViewModelDelegate
 
-extension CNLocationsViewController: CNLocationViewViewModelDelegate {
+extension CNLocationsViewController: CNLocationViewModelDelegate {
     func didFetchInitialLocations() {
         primaryView.configure(with: viewModel)
     }

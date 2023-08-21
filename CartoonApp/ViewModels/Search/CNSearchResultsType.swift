@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum CNSearchResultsViewViewModel {
+struct CNSearchResultsViewModel {
+    let results: CNSearchResultsType
+}
+
+enum CNSearchResultsType {
     case characters([CNCharacterCollectionViewCellViewModel])
     case episodes([CNCharacterEpisodeCollectionViewViewModel])
     case locations([CNLocationTableViewCellViewModel])
