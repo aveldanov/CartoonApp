@@ -120,7 +120,6 @@ final class CNLocationViewViewModel {
                     strongSelf.didFinishPagination?()
                 }
 
-
             case .failure(let failure):
                 print(failure)
                 strongSelf.isLoadingMoreLocations = false
