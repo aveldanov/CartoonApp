@@ -127,7 +127,17 @@ extension CNCharacterListViewViewModel: UICollectionViewDataSource, UICollection
     // MARK: - UICollectionViewDelegateFlowLayout methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = (collectionView.bounds.width - 30) / 2
+        let isIphone = UIDevice.current.userInterfaceIdiom == .phone
+
+        let width: CGFloat
+
+        if isIphone {
+            width = (collectionView.bounds.width - 30) / 2
+        } else {
+            // ipad or mac
+            width = (collectionView.bounds.width - 50) / 4
+        }
+
         let height = width * 1.5
         return CGSize(width: width, height: height)
     }
