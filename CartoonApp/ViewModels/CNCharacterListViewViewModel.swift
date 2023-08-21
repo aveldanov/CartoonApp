@@ -127,6 +127,7 @@ extension CNCharacterListViewViewModel: UICollectionViewDataSource, UICollection
     // MARK: - UICollectionViewDelegateFlowLayout methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        // TODO: Abstract it to extension
         let isIphone = UIDevice.current.userInterfaceIdiom == .phone
 
         let width: CGFloat

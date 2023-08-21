@@ -42,6 +42,11 @@ final class CNSearchViewViewModel {
         // https://rickandmortyapi.com/api/character/?name=rick&status=alive
 
         print(searchText)
+
+        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+
         // Build arguments
         var queryParams: [URLQueryItem] = [URLQueryItem(name: "name", value: searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))]
 

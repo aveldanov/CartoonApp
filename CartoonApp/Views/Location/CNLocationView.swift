@@ -133,10 +133,9 @@ extension CNLocationView: UITableViewDataSource {
 
 extension CNLocationView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
         guard let viewModel = viewModel,
-                !viewModel.cellViewModels.isEmpty,
-                viewModel.shouldShowMoreIndicator,
+              !viewModel.cellViewModels.isEmpty,
+              viewModel.shouldShowMoreIndicator,
               !viewModel.isLoadingMoreLocations else {
             return
         }
