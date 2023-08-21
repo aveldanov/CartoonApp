@@ -16,7 +16,7 @@ final class CNSearchViewModel {
     let config: CNSearchViewController.Config
     private var optionMap: [CNSearchInputViewModel.DynamicOption: String] = [:]
     private var optionMapUpdateBlock: (((option: CNSearchInputViewModel.DynamicOption, value: String))->Void)?
-    private var searchResultHandler: ((CNSearchResultsType) -> Void)?
+    private var searchResultHandler: ((CNSearchResultsViewModel) -> Void)?
     private var noSearchResultHandler: (() -> Void)?
     private var searchResultModel: Codable?
     private var searchText = ""
@@ -29,7 +29,7 @@ final class CNSearchViewModel {
 
     // MARK: - Public
 
-    public func registerSearchResultHandler(_ block: @escaping (CNSearchResultsType) -> Void) {
+    public func registerSearchResultHandler(_ block: @escaping (CNSearchResultsViewModel) -> Void) {
         self.searchResultHandler = block
     }
 
@@ -86,25 +86,30 @@ final class CNSearchViewModel {
     }
 
     private func processSearchResults(model: Codable) {
-        var resultsViewModel: CNSearchResultsType?
+        var resultsViewModel: CNSearchResultType?
+        var nextUrl: String?
 
         if let characterResults = model as? CNGetAllCharactersResponse {
             resultsViewModel = .characters(characterResults.results.compactMap({
                 return CNCharacterCollectionViewCellViewModel(characterName: $0.name, characterStatus: $0.status, characterImageURL: URL(string: $0.image))
             }))
+            nextUrl = characterResults.info.next
         } else if let episodeResults = model as? CNGetAllEpisodesResponse {
             resultsViewModel = .episodes(episodeResults.results.compactMap({
                 return CNCharacterEpisodeCollectionViewViewModel(episodeDataUrl: URL(string: $0.url))
             }))
+            nextUrl = episodeResults.info.next
         } else if let locationResults = model as? CNGetAllLocationsResponse {
             resultsViewModel = .locations(locationResults.results.compactMap({
                 return CNLocationTableViewCellViewModel(location: $0)
 
             }))
+            nextUrl = locationResults.info.next
         }
         if let results = resultsViewModel {
             self.searchResultModel = model
-            self.searchResultHandler?(results)
+            let viewModel = CNSearchResultsViewModel(results: results, next: nextUrl)
+            self.searchResultHandler?(viewModel)
             print(results)
         } else {
             // Fallback error

@@ -14,13 +14,16 @@ protocol CNSearchResultViewDelegate: AnyObject {
 /// Shows search results UI(table or collection as needed)
 final class CNSearchResultView: UIView {
 
+    /// TableView view models
     var locationCellViewModels: [CNLocationTableViewCellViewModel] = []
+
+    /// CollectionView view models
     var collectionViewCellViewModels: [any Hashable] = []
 
 
     weak var delegate: CNSearchResultViewDelegate?
 
-    private var viewModel: CNSearchResultsType? {
+    private var viewModel: CNSearchResultsViewModel? {
         didSet {
             self.processViewModel()
         }
@@ -95,7 +98,7 @@ final class CNSearchResultView: UIView {
             return
         }
 
-        switch viewModel {
+        switch viewModel.results {
         case .characters(let viewModels):
             self.collectionViewCellViewModels = viewModels
             setupCollectionView()
@@ -122,7 +125,7 @@ final class CNSearchResultView: UIView {
         tableView.reloadData()
     }
 
-    public func configure(with viewModel: CNSearchResultsType) {
+    public func configure(with viewModel: CNSearchResultsViewModel) {
         self.viewModel = viewModel
     }
 }
@@ -213,28 +216,23 @@ extension CNSearchResultView: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension CNSearchResultView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let viewModel = viewModel else {
+        guard let viewModel = viewModel, !locationCellViewModels.isEmpty, viewModel.shouldShowMoreIndicator, !viewModel.isLoadingMoreResults else {
             return
         }
-//              !viewModel.cellViewModels.isEmpty,
-//              viewModel.shouldShowMoreIndicator,
-//              !viewModel.isLoadingMoreLocations else {
-//            return
-//        }
-//
-//        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
-//            let offset = scrollView.contentOffset.y
-//            let totalContentHeight = scrollView.contentSize.height
-//            let totalScrollViewFixedHeight = scrollView.frame.size.height
-//
-//            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-//                DispatchQueue.main.async {
-//                    self?.showLoadingInidcator()
-//                }
-//                viewModel.fetchAdditionalLocations()
-//            }
-//            timer.invalidate()
-//        }
+
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScrollViewFixedHeight = scrollView.frame.size.height
+
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+                DispatchQueue.main.async {
+                    self?.showLoadingInidcator()
+                }
+                viewModel.fetchAdditionalLocations()
+            }
+            timer.invalidate()
+        }
     }
 
     private func showLoadingInidcator() {
