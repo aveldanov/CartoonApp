@@ -23,7 +23,7 @@ final class CNSearchResultView: UIView {
 
     weak var delegate: CNSearchResultViewDelegate?
 
-    private var viewModel: CNSearchResultsViewModel? {
+    private var viewModel: CNSearchResultsViewViewModel? {
         didSet {
             self.processViewModel()
         }
@@ -125,7 +125,7 @@ final class CNSearchResultView: UIView {
         tableView.reloadData()
     }
 
-    public func configure(with viewModel: CNSearchResultsViewModel) {
+    public func configure(with viewModel: CNSearchResultsViewViewModel) {
         self.viewModel = viewModel
     }
 }
@@ -216,7 +216,10 @@ extension CNSearchResultView: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension CNSearchResultView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let viewModel = viewModel, !locationCellViewModels.isEmpty, viewModel.shouldShowMoreIndicator, !viewModel.isLoadingMoreResults else {
+        guard let viewModel = viewModel,
+                !locationCellViewModels.isEmpty,
+                viewModel.shouldShowMoreIndicator,
+                !viewModel.isLoadingMoreResults else {
             return
         }
 
@@ -229,7 +232,11 @@ extension CNSearchResultView: UIScrollViewDelegate {
                 DispatchQueue.main.async {
                     self?.showLoadingInidcator()
                 }
-                viewModel.fetchAdditionalLocations()
+                viewModel.fetchAdditionalLocations { [weak self] in
+                    // Refresh table
+                    self?.tableView.tableFooterView = nil
+                    self?.tableView.reloadData()
+                }
             }
             timer.invalidate()
         }

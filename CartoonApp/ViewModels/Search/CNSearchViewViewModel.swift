@@ -16,7 +16,7 @@ final class CNSearchViewViewModel {
     let config: CNSearchViewController.Config
     private var optionMap: [CNSearchInputViewModel.DynamicOption: String] = [:]
     private var optionMapUpdateBlock: (((option: CNSearchInputViewModel.DynamicOption, value: String))->Void)?
-    private var searchResultHandler: ((CNSearchResultsViewModel) -> Void)?
+    private var searchResultHandler: ((CNSearchResultsViewViewModel) -> Void)?
     private var noSearchResultHandler: (() -> Void)?
     private var searchResultModel: Codable?
     private var searchText = ""
@@ -29,7 +29,7 @@ final class CNSearchViewViewModel {
 
     // MARK: - Public
 
-    public func registerSearchResultHandler(_ block: @escaping (CNSearchResultsViewModel) -> Void) {
+    public func registerSearchResultHandler(_ block: @escaping (CNSearchResultsViewViewModel) -> Void) {
         self.searchResultHandler = block
     }
 
@@ -108,7 +108,7 @@ final class CNSearchViewViewModel {
         }
         if let results = resultsViewModel {
             self.searchResultModel = model
-            let viewModel = CNSearchResultsViewModel(results: results, next: nextUrl)
+            let viewModel = CNSearchResultsViewViewModel(results: results, next: nextUrl)
             self.searchResultHandler?(viewModel)
             print(results)
         } else {
