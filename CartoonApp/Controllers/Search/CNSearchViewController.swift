@@ -48,12 +48,12 @@ final class CNSearchViewController: UIViewController {
     }
 
     private let searchView: CNSearchView
-    private let viewModel: CNSearchViewModel
+    private let viewModel: CNSearchViewViewModel
 
     // MARK: - Init
 
     init(config: Config) {
-        let viewModel = CNSearchViewModel(config: config)
+        let viewModel = CNSearchViewViewModel(config: config)
         self.viewModel = viewModel
         self.searchView = CNSearchView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)

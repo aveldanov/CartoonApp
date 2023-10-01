@@ -17,7 +17,7 @@ final class CNSearchView: UIView {
 
     weak var delegate: CNSearchViewDelegate?
 
-    private let viewModel: CNSearchViewModel
+    private let viewModel: CNSearchViewViewModel
 
     // MARK: - Subviews
 
@@ -33,7 +33,7 @@ final class CNSearchView: UIView {
 
     // MARK: - Init
 
-    init(frame: CGRect, viewModel: CNSearchViewModel) {
+    init(frame: CGRect, viewModel: CNSearchViewViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
         backgroundColor = .systemBackground
@@ -87,7 +87,7 @@ final class CNSearchView: UIView {
         searchInputView.presentKeyboard()
     }
 
-    private func setupHandlers(viewModel: CNSearchViewModel) {
+    private func setupHandlers(viewModel: CNSearchViewViewModel) {
         viewModel.registerOptionChangeBlock {tuple in
             // tuple: option | value
             self.searchInputView.update(option: tuple.option, value: tuple.value)

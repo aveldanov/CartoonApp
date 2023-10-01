@@ -11,7 +11,7 @@ import Foundation
 // - show results
 // - show no results view
 // - kick off
-final class CNSearchViewModel {
+final class CNSearchViewViewModel {
 
     let config: CNSearchViewController.Config
     private var optionMap: [CNSearchInputViewModel.DynamicOption: String] = [:]

@@ -9,7 +9,7 @@ import Foundation
 
 final class CNSearchResultsViewModel {
     let results: CNSearchResultType
-    let next: String?
+    private var next: String?
 
     init(results: CNSearchResultType, next: String?) {
         self.results = results
@@ -52,22 +52,21 @@ final class CNSearchResultsViewModel {
                 let moreResults = resultModel.results
                 strongSelf.next = resultModel.info.next // Capture new url if exists
 
-                print("MORE LOCATIONS", strongSelf.apiInfo?.next)
-
-                strongSelf.cellViewModels.append(contentsOf: moreResults.compactMap({
+                let additionalLocations = moreResults.compactMap({
                     return CNLocationTableViewCellViewModel(location: $0)
-                }))
 
+                })
+                
                 DispatchQueue.main.async {
-                    strongSelf.isLoadingMoreLocations = false
+                    strongSelf.isLoadingMoreResults = false
 
                     // Notify via callback
-                    strongSelf.didFinishPagination?()
+//                    strongSelf.didFinishPagination?()
                 }
 
             case .failure(let failure):
                 print(failure)
-                strongSelf.isLoadingMoreLocations = false
+                strongSelf.isLoadingMoreResults = false
             }
         }
     }
