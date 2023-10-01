@@ -214,6 +214,8 @@ extension CNSearchResultView: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
+// MARK: - ScrollView Delegate
+
 extension CNSearchResultView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let viewModel = viewModel,
@@ -232,9 +234,10 @@ extension CNSearchResultView: UIScrollViewDelegate {
                 DispatchQueue.main.async {
                     self?.showLoadingInidcator()
                 }
-                viewModel.fetchAdditionalLocations { [weak self] in
+                viewModel.fetchAdditionalLocations { [weak self] newResults in
                     // Refresh table
                     self?.tableView.tableFooterView = nil
+                    self?.locationCellViewModels = newResults
                     self?.tableView.reloadData()
                 }
             }

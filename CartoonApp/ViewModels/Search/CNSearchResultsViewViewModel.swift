@@ -15,6 +15,7 @@ final class CNSearchResultsViewViewModel {
     init(results: CNSearchResultType, next: String?) {
         self.results = results
         self.next = next
+        print("[CNSearchResultsViewViewModel] pagination next page", next as Any)
     }
 
     public private(set) var isLoadingMoreResults: Bool = false
@@ -24,7 +25,7 @@ final class CNSearchResultsViewViewModel {
     }
 
 
-    public func fetchAdditionalLocations(completion: @escaping () -> Void) {
+    public func fetchAdditionalLocations(completion: @escaping ([CNLocationTableViewCellViewModel]) -> Void) {
         // Fetch characters
         guard !isLoadingMoreResults else {
             return
@@ -57,17 +58,20 @@ final class CNSearchResultsViewViewModel {
                     return CNLocationTableViewCellViewModel(location: $0)
                 })
 
+                var newResults: [CNLocationTableViewCellViewModel] = []
+
                 switch strongSelf.results {
                 case .locations(let existingResults):
-                    let newResults = existingResults + additionalLocations
+                    newResults = existingResults + additionalLocations
                     strongSelf.results = .locations(newResults)
+                    break
                 case .characters, .episodes:
                     break
                 }
                 
                 DispatchQueue.main.async {
                     strongSelf.isLoadingMoreResults = false
-                    completion()
+                    completion(newResults)
                 }
 
             case .failure(let failure):
