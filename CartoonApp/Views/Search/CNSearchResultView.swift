@@ -218,10 +218,24 @@ extension CNSearchResultView: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension CNSearchResultView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if locationCellViewModels.isEmpty {
+            handleLocationPagination(scrollView: scrollView)
+        } else {
+            // Collection View
+            handleCharacterOrEpisodePagination(scrollView: scrollView)
+        }
+    }
+
+    private func handleCharacterOrEpisodePagination(scrollView: UIScrollView) {
+
+    }
+
+
+    private func handleLocationPagination(scrollView: UIScrollView) {
         guard let viewModel = viewModel,
-                !locationCellViewModels.isEmpty,
-                viewModel.shouldShowMoreIndicator,
-                !viewModel.isLoadingMoreResults else {
+              !locationCellViewModels.isEmpty,
+              viewModel.shouldShowMoreIndicator,
+              !viewModel.isLoadingMoreResults else {
             return
         }
 
